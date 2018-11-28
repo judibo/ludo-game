@@ -1,0 +1,17 @@
+.NavBar {
+    display: flex;
+    justify-content: center;
+    margin: 0 0 20px;
+    background-color: forestgreen;
+}
+
+.NavBar-link {
+    margin: 0 10px;
+    padding: 15px;
+    color: white;
+    text-decoration: none;
+}
+
+.selected {
+    background-color: orange;
+}
