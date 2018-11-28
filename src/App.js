@@ -43,7 +43,7 @@ class App extends Component {
       <Router>
         <div className="App">
           <h1>Ludo</h1>
-          <NavBar/>
+          <NavBar user={this.state.user} handleLogout={this.handleLogout}/>
           <Route exact path="/" component={Home}/>
           <Route path="/game" render={() => <GamePage />}/>
           <Route path="/instructions" render={() => <Instructions />}/>
