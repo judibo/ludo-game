@@ -1,0 +1,8 @@
+.Instructions {
+    text-align: left;
+    padding: 0 20em;
+}
+
+li {
+    list-style: square;
+}
