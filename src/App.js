@@ -6,7 +6,6 @@ import {
 } from 'react-router-dom';
 import Home from './pages/Home/Home';
 import GamePage from './pages/GamePage/GamePage';
-import Instructions from './pages/Instructions/Instructions';
 import userService from './utils/userService'; 
 import NavBar from './components/NavBar/NavBar';
 import SignupPage from './pages/SignupPage/SignupPage';
@@ -37,6 +36,16 @@ class App extends Component {
   handleLogin = () => {
     this.setState({user: userService.getUser()});
   }
+
+  handleDiceRoll = () => {
+    var randomNumber = Math.floor(Math.random() * 6) + 1;
+    console.log(randomNumber)
+  }
+
+  handlePieceClick = () => {
+    // this.setState({pieceId: pieceId});
+    alert('Piece clicked!');
+  }
   
   /*---------- Lifecycle Methods ----------*/
 
@@ -56,20 +65,25 @@ class App extends Component {
         <div className="App">
           <NavBar user={this.state.user} handleLogout={this.handleLogout}/>
           <Route exact path="/" component={Home}/>
-          <Route exact path="/game" render={() => <GamePage user={this.state.user}/>}/>
-          <Route exact path="/instructions" render={() => <Instructions />}/>
+          <Route exact path="/game" render={() => 
+            <GamePage 
+              user={this.state.user}
+              handleDiceRoll={this.handleDiceRoll}
+              handlePieceClick={this.handlePieceClick}
+              />
+            }/>
           <Route exact path='/signup' render={(props) => 
-              <SignupPage
-                {...props}
-                handleSignup={this.handleSignup}
-              />
-            }/>
-            <Route exact path='/login' render={(props) => 
-              <LoginPage
-                {...props}
-                handleLogin={this.handleLogin}
-              />
-            }/>
+            <SignupPage
+              {...props}
+              handleSignup={this.handleSignup}
+            />
+          }/>
+          <Route exact path='/login' render={(props) => 
+            <LoginPage
+              {...props}
+              handleLogin={this.handleLogin}
+            />
+          }/>
           
         </div>
       </Router>

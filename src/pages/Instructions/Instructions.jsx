@@ -1,13 +1,11 @@
 import React from 'react';
 import styles from './Instructions.module.css';
-import Chat from '../../components/Chat/Chat';
-
 
 const Instructions = (props) => (
-<div className="GamePage">
-  <div>
+<div>
+  <div className={styles.Instructions}>
     <h1>How to play:</h1>
-    <ul className={styles.Instructions}>
+    <ul >
         <li>Players take turns in a clockwise order.</li>
         <li>A player must throw a 6 to move a piece from the starting circle onto the first square on the track.</li>
         <li>Each throw, the player decides which piece to move.</li>
@@ -17,7 +15,7 @@ const Instructions = (props) => (
         <li>If a piece lands on a piece of a different color, the piece jumped upon is returned to its starting circle.</li>
     </ul>
   </div>
-  <Chat user={props.user}/>
+  {/* <Chat user={props.user}/> */}
 </div>
 )
 

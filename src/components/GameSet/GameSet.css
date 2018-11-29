@@ -1,0 +1,9 @@
+.GameSet {
+    color: black;
+    padding: 1em;
+    background-color: gainsboro;
+}
+.Player-List {
+    text-align: left;
+    list-style: none;
+}

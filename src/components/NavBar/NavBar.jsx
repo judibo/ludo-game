@@ -7,13 +7,11 @@ const NavBar = (props) => {
         <nav className='NavBar'>
             <NavLink exact to="/" className='NavBar-link' activeClassName="selected">L U D O</NavLink>{' '}
             <NavLink to="/game" className='NavBar-link' activeClassName="selected">Play</NavLink>{' '}
-            <NavLink to="/instructions" className='NavBar-link' activeClassName="selected">Instructions</NavLink>{' '}
             <NavLink to='/login' className='NavBar-link' onClick={props.handleLogout}>Logout</NavLink>{' '}
             <p className='NavBar-welcome'>WELCOME, {props.user.name}</p>
         </nav> :
         <nav className='NavBar'>
             <NavLink exact to="/" className='NavBar-link' activeClassName="selected">Home</NavLink>{' '}
-            <NavLink to="/instructions" className='NavBar-link' activeClassName="selected">How to play</NavLink>{' '}
             <NavLink to='/login' className='NavBar-link'>Log in</NavLink>{' '}
             <NavLink to='/signup' className='NavBar-link'>Sign up</NavLink>
         </nav>;

@@ -21,21 +21,23 @@
     flex-wrap: wrap;
 }
 .GameBoard-Row2 {
-    width: 700px;
-}
-.GameBoard-Row2>.GameBoard-Col {
-    width: 250px;
+    display: flex;
     margin-left: -36px;
 }
-.GameBoard-Col div {
+.GameBoard-Row2>.GameBoard-Col {
+    width: 222px;
+}
+.GameBoard-Col>div {
     height: 35px;
     width: 35px;
     border: 1px solid black;
 }
 
 .GameBoard-ColorHouse {
-    width: 150px;
+    width: 186px;
     height:186px;
+    display: flex;
+
 }
 
 .GameBoard-Red {
@@ -54,15 +56,63 @@
     border-bottom-right-radius: 25px
 }
 
-.yellow, .GameBoard-Yellow {
+.yellow, .GameBoard-Yellow, #top {
     background-color: #f0c830;
 }
-.green, .GameBoard-Green {
+.green, .GameBoard-Green, #bottom {
     background-color: #7d8e14;
 }
-.red, .GameBoard-Red {
+.red, .GameBoard-Red, #left {
     background-color: #b34121;
 }
-.blue, .GameBoard-Blue {
+.blue, .GameBoard-Blue, #right {
     background-color: #0152a8;
 }
+
+
+.GameBoard-Center {
+        position: relative;
+        height: 111px;
+        width: 111px;
+        overflow: hidden;
+        transition: all 1s;
+    }
+    #top, #left, #right, #bottom {
+        border: 1px solid black;
+        position: absolute;
+        height: calc(100% / 1.414);
+        width: calc(100% / 1.414);
+        top: 50%;
+        left: 50%;
+        transform-origin: 0% 0%;
+      }
+      #right {
+        transform: rotate(-45deg);
+      }
+      #bottom {
+        transform: rotate(45deg);
+      }
+      #top {
+        transform: rotate(-135deg);
+      }
+      #left {
+        transform: rotate(135deg);
+      }
+
+    .piece {
+        width: 40;
+        height: 40;
+        margin: 5;
+        border-radius: 50%;
+        background-color: grey;
+        opacity: 0.85;
+        border: 1px dashed grey;
+        cursor: pointer;
+    }
+
+    .House-Pieces {
+        width: 84px;
+        height: 84px;
+        display: flex;
+        flex-wrap: wrap;
+    }

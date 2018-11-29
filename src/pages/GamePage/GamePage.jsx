@@ -1,13 +1,16 @@
 import React from 'react';
 import GameBoard from '../../components/GameBoard/GameBoard';
-import Chat from '../../components/Chat/Chat';
 import './GamePage.css';
+import GameSet from '../../components/GameSet/GameSet';
 
 
 const GamePage = (props) => (
   <div className="GamePage">
-    <GameBoard />
-    <Chat user={props.user}/>
+    <GameBoard
+      handleDiceRoll={props.handleDiceRoll}
+      handlePieceClick={props.handlePieceClick}
+    />
+    <GameSet />
   </div>
 )
 
