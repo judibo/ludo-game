@@ -1,6 +1,7 @@
 .Instructions {
     text-align: left;
-    padding: 0 20em;
+    padding: 0 10em;
+    height: 100vh;
 }
 
 li {

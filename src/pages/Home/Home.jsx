@@ -4,8 +4,8 @@ class Home extends Component {
   render() {
     return (
       <div className="Home">
-        <h1>Welcome to Ludo</h1>
-        <p>Enjoy the game!</p>
+        <h1>L U D O</h1>
+        <p>Login to play!</p>
       </div>
     );
   }

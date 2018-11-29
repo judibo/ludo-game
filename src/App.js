@@ -1,22 +1,29 @@
 import React, { Component } from 'react';
 import './App.css';
-import Home from './pages/Home/Home';
-import GamePage from './pages/GamePage/GamePage';
-import Instructions from './pages/Instructions/Instructions';
 import {
   BrowserRouter as Router,
   Route,
 } from 'react-router-dom';
+import Home from './pages/Home/Home';
+import GamePage from './pages/GamePage/GamePage';
+import Instructions from './pages/Instructions/Instructions';
 import userService from './utils/userService'; 
 import NavBar from './components/NavBar/NavBar';
 import SignupPage from './pages/SignupPage/SignupPage';
 import LoginPage from './pages/LoginPage/LoginPage';
+import socket from './utils/socket';
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      
+      // game: null
+    };
   }
+
+  
+  /* ---- Callback Methods --- */
 
   handleLogout = () => {
     userService.logout();
@@ -36,17 +43,21 @@ class App extends Component {
   componentDidMount() {
     let user = userService.getUser();
     this.setState({user});
+    socket.on('game', (game) => {
+      const newGames = [...this.state.games];
+      newGames.push(game);
+      this.setState({ games: newGames });
+    });
   }
 
   render() {
     return (
       <Router>
         <div className="App">
-          <h1>Ludo</h1>
           <NavBar user={this.state.user} handleLogout={this.handleLogout}/>
           <Route exact path="/" component={Home}/>
-          <Route path="/game" render={() => <GamePage />}/>
-          <Route path="/instructions" render={() => <Instructions />}/>
+          <Route exact path="/game" render={() => <GamePage user={this.state.user}/>}/>
+          <Route exact path="/instructions" render={() => <Instructions />}/>
           <Route exact path='/signup' render={(props) => 
               <SignupPage
                 {...props}
@@ -59,6 +70,7 @@ class App extends Component {
                 handleLogin={this.handleLogin}
               />
             }/>
+          
         </div>
       </Router>
     );

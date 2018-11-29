@@ -1,0 +1,68 @@
+.GameBoard {
+    color: black;
+    height: 100vh;
+    padding-top: 2em;
+    text-align: center;
+    margin: auto;
+}
+.GameBoard-Row1{
+    display: flex;
+    height: 200px;
+    align-items: flex-end;
+}
+.GameBoard-Row3{
+    display: flex;
+    height: 200px;
+    align-items: flex-start;
+}
+.GameBoard-Col {
+    width: 111px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.GameBoard-Row2 {
+    width: 700px;
+}
+.GameBoard-Row2>.GameBoard-Col {
+    width: 250px;
+    margin-left: -36px;
+}
+.GameBoard-Col div {
+    height: 35px;
+    width: 35px;
+    border: 1px solid black;
+}
+
+.GameBoard-ColorHouse {
+    width: 150px;
+    height:186px;
+}
+
+.GameBoard-Red {
+    border-top-left-radius: 25px
+}
+
+.GameBoard-Yellow {
+    border-top-right-radius: 25px;
+}
+
+.GameBoard-Green {
+    border-bottom-left-radius: 25px
+}
+
+.GameBoard-Blue {
+    border-bottom-right-radius: 25px
+}
+
+.yellow, .GameBoard-Yellow {
+    background-color: #f0c830;
+}
+.green, .GameBoard-Green {
+    background-color: #7d8e14;
+}
+.red, .GameBoard-Red {
+    background-color: #b34121;
+}
+.blue, .GameBoard-Blue {
+    background-color: #0152a8;
+}

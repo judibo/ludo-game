@@ -1,7 +1,10 @@
 import React from 'react';
 import styles from './Instructions.module.css';
+import Chat from '../../components/Chat/Chat';
+
 
 const Instructions = (props) => (
+<div className="GamePage">
   <div>
     <h1>How to play:</h1>
     <ul className={styles.Instructions}>
@@ -14,6 +17,8 @@ const Instructions = (props) => (
         <li>If a piece lands on a piece of a different color, the piece jumped upon is returned to its starting circle.</li>
     </ul>
   </div>
+  <Chat user={props.user}/>
+</div>
 )
 
 export default Instructions;

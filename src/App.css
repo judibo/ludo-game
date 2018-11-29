@@ -1,3 +1,9 @@
 .App {
   text-align: center;
+  margin: 0;
+  color: #0152a8;
+}
+
+.App h1 {
+  margin: 0;
 }
