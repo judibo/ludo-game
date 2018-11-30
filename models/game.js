@@ -1,14 +1,23 @@
 var mongoose = require('mongoose');
 
+var playerSchema = new mongoose.Schema({
+  // name: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
+  name: String,
+  id: String,
+});
+
 var gameSchema = new mongoose.Schema({
-    player: [{type: mongoose.Schema.Types.ObjectId, ref: 'Pokemon'}],
-    isGameActive: false,
-    playerTurn: [],
-    scoreBoard: null,
+    players: [playerSchema],
+    playerTurn: String,
+    scoreBoard: [], //keep track how many pieces the player has on the GameBoard-Center, to be able to check winner
+    boardSession: String, //
+    boardStatus: String // is this game in play?
   }, {
     timestamps: true
   });
 
+
+  
 module.exports = mongoose.model('Game', gameSchema);
 
 

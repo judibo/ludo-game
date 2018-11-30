@@ -9,7 +9,7 @@ require('./config/database');
 
 var app = express();
 var httpServer = http.Server(app);
-require('./io')(httpServer);
+require('./io').init(httpServer);
 
 app.use(logger('dev'));
 app.use(express.json());

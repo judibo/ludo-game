@@ -9,7 +9,6 @@ class Chat extends Component {
       chats: [{from: 'Fred', msg: 'Hello!'}],
       from: 'Suzy',
       msg: ''
-      // game: null
     };
   }
 
