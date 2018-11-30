@@ -4,6 +4,13 @@
   color: #0152a8;
 }
 
-.App h1 {
-  margin: 0;
+button {
+  background: #f0c830;
+  color: black;
+  padding: 30px 30px;
+  border-radius: 10px;
+  font-size: 15px;
+  border: 1px solid black;
+  box-shadow: 4px 4px 0px rgba(0, 0, 0, 1);
+  outline: none;
 }

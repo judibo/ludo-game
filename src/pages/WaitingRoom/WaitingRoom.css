@@ -1,0 +1,15 @@
+.WaitingRoom {
+  padding: 50px;
+}
+.WaitingRoom-Code {
+    background: #183f69;
+    color: white;
+    padding: 20px 20px;
+    border-radius: 10px;
+    font-size: 20px;
+    border: 1px solid black;
+    box-shadow: 4px 4px 0px rgba(0, 0, 0, 1);
+    width: 50vw;
+    text-align: center;
+    margin: auto;
+  }

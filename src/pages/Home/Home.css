@@ -1,0 +1,11 @@
+.Home-Ctrl {
+    padding: 4em;
+    display: inline-grid;
+}
+
+.Home-Input {
+    padding: 30px 30px;
+    font-size: 15px;
+    outline: none;
+    margin: 40px 0 10px 0;
+}

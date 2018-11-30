@@ -88,7 +88,7 @@ class App extends Component {
                 handlePieceClick={this.handlePieceClick}
               />;
     } else if (game && game.players.length === 1) {
-      page = <WaitingRoom />;
+      page = <WaitingRoom game={this.state.game}/>;
     } else {
       page = <Home 
                 user={this.state.user}
@@ -105,14 +105,14 @@ class App extends Component {
           }/>
           {/* <Route exact path="/" render={() =>
             <Home handleCreateGame={this.handleCreateGame}/>
-          }/>
+          }/> */}
           <Route exact path="/game" render={() => 
             <GamePage 
               user={this.state.user}
               handleDiceRoll={this.handleDiceRoll}
               handlePieceClick={this.handlePieceClick}
               />
-            }/> */}
+            }/>
           <Route exact path='/signup' render={(props) => 
             <SignupPage
               {...props}

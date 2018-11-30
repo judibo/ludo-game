@@ -1,0 +1,26 @@
+.Header {
+    margin-top: 60px;
+}
+.Header-Title {
+    background: #ff0000;
+    color: #fff;
+    padding: 20px 40px;
+    border-radius: 50%;
+    font-size: 80px;
+    text-shadow: 4px 4px 0px rgba(0, 0, 0, 1);
+    box-shadow: -4px -4px 0px rgba(0, 0, 0, 1);
+    margin-right: 5px;
+
+}
+.Header-Yellow {
+background-color: #f0c830;
+}
+.Header-Green {
+background-color: #7d8e14;
+}
+.Header-Red{
+background-color: #b34121;
+}
+.Header-Blue {
+background-color: #0152a8;
+}
