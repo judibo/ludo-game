@@ -56,7 +56,8 @@ class App extends Component {
 
   handleDiceRoll = () => {
     var randomNumber = Math.floor(Math.random() * 6) + 1;
-    console.log(randomNumber)
+    var dice = document.getElementById("dice");
+    dice.src="/imgs/dice-"+randomNumber+".png";
   }
 
   handlePieceClick = () => {
@@ -81,16 +82,15 @@ class App extends Component {
     let page;
     if (game && game.players.length === 1) {
       page = <WaitingRoom game={this.state.game} user={this.state.user}/>;
-    // } else if (game && game.players.length > 1 ) {
-    // // } else if (game && user._id === game.player.id && game.players.length > 1 ) {
-    //   page = <StartGame game={this.state.game}/>;
-    } else if (game && game.players.length === 2) {
+    } else if (game && game.gameInPlay) {
       page = <GamePage
                 game={this.state.game}
                 user={this.state.user}
                 handleDiceRoll={this.handleDiceRoll}
                 handlePieceClick={this.handlePieceClick}
               />;
+    } else if (game && game.players.some(p => p.id === this.state.user._id) && game.players.length > 1 ) {
+      page = <StartGame game={this.state.game}/>;
     } else {
       page = <Home 
                 user={this.state.user}

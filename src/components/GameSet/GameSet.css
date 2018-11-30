@@ -3,6 +3,9 @@
     padding: 1em;
     background-color: gainsboro;
 }
+.GameSet-players {
+    text-align: left;
+}
 .Player-List {
     text-align: left;
     list-style: none;

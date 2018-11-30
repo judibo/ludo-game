@@ -7,12 +7,13 @@ import GameSet from '../../components/GameSet/GameSet';
 const GamePage = (props) => (
   <div className="GamePage">
     <GameBoard
-      handleDiceRoll={props.handleDiceRoll}
       handlePieceClick={props.handlePieceClick}
     />
     <GameSet 
       game={props.game}
-      user={props.user}/>
+      user={props.user}
+      handleDiceRoll={props.handleDiceRoll}
+      />
   </div>
 )
 

@@ -1,15 +1,11 @@
 import React from 'react';
 import './GameBoard.css';
-import Dice from '../Dice/Dice';
 import Piece from '../Piece/Piece';
 
 const GameBoard = (props) => (
     <div className="GameBoard">
         <div className="GameBoard-Row1">
             <div className="GameBoard-ColorHouse GameBoard-Red">
-                <div>
-                    <Dice handleDiceRoll={props.handleDiceRoll}/>
-                </div>
                 <div className="House-Pieces">
                     <Piece handlePieceClick={props.handlePieceClick}/>
                     <Piece handlePieceClick={props.handlePieceClick}/>
@@ -43,9 +39,6 @@ const GameBoard = (props) => (
                     <Piece handlePieceClick={props.handlePieceClick}/>
                     <Piece handlePieceClick={props.handlePieceClick}/>
                     <Piece handlePieceClick={props.handlePieceClick}/>
-                </div>
-                 <div>
-                    <Dice handleDiceRoll={props.handleDiceRoll}/>
                 </div>
             </div>
         </div>
@@ -99,9 +92,6 @@ const GameBoard = (props) => (
         </div>
         <div className="GameBoard-Row3">
             <div className="GameBoard-ColorHouse GameBoard-Green">
-                 <div>
-                    <Dice handleDiceRoll={props.handleDiceRoll}/>
-                </div>
                 <div className="House-Pieces">
                     <Piece handlePieceClick={props.handlePieceClick}/>
                     <Piece handlePieceClick={props.handlePieceClick}/>
@@ -135,9 +125,6 @@ const GameBoard = (props) => (
                     <Piece handlePieceClick={props.handlePieceClick}/>
                     <Piece handlePieceClick={props.handlePieceClick}/>
                     <Piece handlePieceClick={props.handlePieceClick}/>
-                </div>
-                 <div>
-                    <Dice handleDiceRoll={props.handleDiceRoll}/>
                 </div>
             </div>
         </div>

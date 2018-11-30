@@ -38,7 +38,6 @@ module.exports = {
       });
       
       socket.on('joinGame', function(user, roomId) {
-        console.log('clicked join a game');
         var game = games[roomId];
         game.players.push({
           name: user.name,
@@ -46,8 +45,15 @@ module.exports = {
           role: 'Player',
         });
         socket.join(roomId);
+        if (game.players.length === 4) game.gameInPlay = true;
         io.emit('gameData', game);
         game.save();
+      });
+
+      socket.on('rollDice', function(user) {
+        var randomNumber = Math.floor(Math.random() * 6) + 1;
+        var dice = document.getElementById("dice");
+        dice.src="/imgs/dice-"+randomNumber+".png";
       });
     })
   },
