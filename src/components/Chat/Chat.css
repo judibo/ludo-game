@@ -4,13 +4,13 @@
     background-color: gainsboro;
 }
 
-section {
-    display: flex;
-}
-article {
+.Chat-Input {
     display: flex;
 }
 
+article {
+    display: flex;
+}
 article div {
     padding-right: 10px;
 }

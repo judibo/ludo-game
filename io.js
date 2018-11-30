@@ -27,14 +27,28 @@ module.exports = {
         game.players.push({
           name: user.name,
           id: user._id,
+          role: 'Host',
         });
         game.save(function(err) {
           socket.gameId = game.id;
           socket.join(game.id);
           io.to(game.id).emit('gameData', game);
+          games[game._id] = game;
         });
       });
-
+      
+      socket.on('joinGame', function(user, roomId) {
+        console.log('clicked join a game');
+        var game = games[roomId];
+        game.players.push({
+          name: user.name,
+          id: user._id,
+          role: 'Player',
+        });
+        socket.join(roomId);
+        io.emit('gameData', game);
+        game.save();
+      });
     })
   },
   

@@ -10,7 +10,9 @@ const GamePage = (props) => (
       handleDiceRoll={props.handleDiceRoll}
       handlePieceClick={props.handlePieceClick}
     />
-    <GameSet />
+    <GameSet 
+      game={props.game}
+      user={props.user}/>
   </div>
 )
 

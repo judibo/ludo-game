@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const gamesCtrl = require('../../controllers/games');
 
-router.post('/', checkAuth, gamesCtrl.createGame);
+router.post('/', checkAuth, gamesCtrl.createGame, gamesCtrl.joinGame);
 
 function checkAuth(req, res, next) {
     if (req.user) return next();

@@ -13,6 +13,7 @@ import LoginPage from './pages/LoginPage/LoginPage';
 import socket from './utils/socket';
 import gameService from './utils/gameService';
 import WaitingRoom from './pages/WaitingRoom/WaitingRoom';
+import StartGame from './pages/StartGame/StartGame';
 
 
 class App extends Component {
@@ -27,10 +28,9 @@ class App extends Component {
     e.preventDefault();
     gameService.createGame(this.state.user);
   }
-
-  handleJoinGame = (e) => {
+  handleStartGame = (e) => {
     e.preventDefault();
-    gameService.joinGame(this.state.user);
+    gameService.startGame(this.state.user);
   }
   
   /*----- Socket.io -----*/
@@ -79,40 +79,29 @@ class App extends Component {
   render() {
     let game = this.state.game;
     let page;
-    if (game && game.players.length === 2) {
-      // page = <GameOver />
-    } else if (game && game.players.length >= 2) {
-      page = <GamePage 
+    if (game && game.players.length === 1) {
+      page = <WaitingRoom game={this.state.game} user={this.state.user}/>;
+    // } else if (game && game.players.length > 1 ) {
+    // // } else if (game && user._id === game.player.id && game.players.length > 1 ) {
+    //   page = <StartGame game={this.state.game}/>;
+    } else if (game && game.players.length === 2) {
+      page = <GamePage
+                game={this.state.game}
                 user={this.state.user}
                 handleDiceRoll={this.handleDiceRoll}
                 handlePieceClick={this.handlePieceClick}
               />;
-    } else if (game && game.players.length === 1) {
-      page = <WaitingRoom game={this.state.game}/>;
     } else {
       page = <Home 
                 user={this.state.user}
-                handleCreateGame={this.handleCreateGame}
-                handleJoinGame={this.handleJoinGame} />;
+                handleCreateGame={this.handleCreateGame} />;
     }
   
     return (
       <Router>
         <div className="App">
           <NavBar user={this.state.user} handleLogout={this.handleLogout}/>
-          <Route exact path="/" render={() =>
-            page
-          }/>
-          {/* <Route exact path="/" render={() =>
-            <Home handleCreateGame={this.handleCreateGame}/>
-          }/> */}
-          <Route exact path="/game" render={() => 
-            <GamePage 
-              user={this.state.user}
-              handleDiceRoll={this.handleDiceRoll}
-              handlePieceClick={this.handlePieceClick}
-              />
-            }/>
+          <Route exact path="/" render={() => page }/>
           <Route exact path='/signup' render={(props) => 
             <SignupPage
               {...props}

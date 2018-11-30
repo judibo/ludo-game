@@ -6,16 +6,13 @@ import Instructions from '../../pages/Instructions/Instructions';
 const GameSet = (props) => (
     <div className="GameSet">
         <div>
-            <ul>
-                <li className="Player-List"><strong>Player Red: Take your turn</strong></li>
-                <li className="Player-List">Player Yellow: </li>
-                <li className="Player-List">Player Blue: </li>
-                <li className="Player-List">Player Green: </li>
+            <ul> Players on the room:
+            {props.game.players.map((player) => <li className="StartGame-list">{player.name}</li>)}
             </ul>
         </div>
         <div>
             <Instructions />
-            <Chat />
+            <Chat user={props.user}/>
         </div>
     </div>
 )

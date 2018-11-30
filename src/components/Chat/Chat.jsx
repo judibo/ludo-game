@@ -6,8 +6,8 @@ class Chat extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      chats: [{from: 'Fred', msg: 'Hello!'}],
-      from: 'Suzy',
+      chats: [],
+      from: '',
       msg: ''
     };
   }
@@ -19,7 +19,7 @@ class Chat extends Component {
   }
 
   sendChat = () => {
-    socket.emit('chat', {from: this.state.from, msg: this.state.msg});
+    socket.emit('chat', {from: this.props.user.name, msg: this.state.msg});
     this.setState({msg: ''});
   }
   
@@ -37,8 +37,7 @@ class Chat extends Component {
     return (
         <div className="Chat">
             <div>
-              <section>
-                <input type="text" name='from' value={this.state.from} onChange={this.handleChange} /><br/>
+              <section className="Chat-Input">
                 <textarea type="text" name='msg' value={this.state.msg} onChange={this.handleChange} /><br/>
                 <button onClick={this.sendChat}>Send Chat</button>
               </section>
@@ -46,7 +45,7 @@ class Chat extends Component {
               <section>
                 {this.state.chats.map((c, i) =>
                   <article key={i}>
-                    <div>{c.from}</div>
+                    <div>{c.from}: </div>
                     <div>{c.msg}</div>
                   </article>
                 )}

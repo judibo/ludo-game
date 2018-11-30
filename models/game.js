@@ -4,12 +4,13 @@ var playerSchema = new mongoose.Schema({
   // name: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
   name: String,
   id: String,
+  role: String,
 });
 
 var gameSchema = new mongoose.Schema({
     players: [playerSchema],
     playerTurn: String,
-    scoreBoard: [], //keep track how many pieces the player has on the GameBoard-Center, to be able to check winner
+    scoreBoard: {red:0, blue:0, green:0, yellow:0}, //keep track how many pieces the player has on the GameBoard-Center, to be able to check winner
     boardSession: String, //
     boardStatus: String // is this game in play?
   }, {
