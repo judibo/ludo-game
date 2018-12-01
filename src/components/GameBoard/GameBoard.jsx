@@ -132,4 +132,3 @@ const GameBoard = (props) => (
 )
 
 export default GameBoard;
-

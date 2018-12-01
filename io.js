@@ -44,16 +44,17 @@ module.exports = {
           id: user._id,
           role: 'Player',
         });
+        socket.gameId = game.id;
         socket.join(roomId);
         if (game.players.length === 4) game.gameInPlay = true;
-        io.emit('gameData', game);
+        io.to(game.id).emit('gameData', game);
         game.save();
       });
 
-      socket.on('startGame', function(roomId) {
-        var game = games[roomId];
+      socket.on('startGame', function() {
+        var game = games[socket.gameId];
         game.gameInPlay = true;
-        io.emit('gameData', game);
+        io.to(game.id).emit('gameData', game);
         game.save();
       });
       
@@ -61,12 +62,12 @@ module.exports = {
         var game = games[roomId];
         var randomNumber = Math.floor(Math.random() * 6) + 1;
         game.dice = randomNumber;
-        io.emit('gameData', game);
+        io.to(game.id).emit('gameData', game);
         game.save();
       });
       socket.on('makeMove', function() {
-        var randomNumber = Math.floor(Math.random() * 6) + 1;
-        io.emit('gameData', game);
+          //write function to move the selected piece on the track
+        io.to(game.id).emit('gameData', game);
         game.save();
       });
     })

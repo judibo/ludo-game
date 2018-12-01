@@ -10,3 +10,13 @@
     text-align: left;
     list-style: none;
 }
+
+
+.GameSet-players-color {
+    width: 40px;
+    height: 40px;
+    margin: 5px;
+    border-radius: 50%;
+    opacity: 0.85;
+    cursor: pointer;
+  };
