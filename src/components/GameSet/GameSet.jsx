@@ -10,7 +10,7 @@ const GameSet = (props) => (
         <div className="GameSet-players">
             <h4>Players online:</h4>
             <ul>
-            {props.game.players.map((player) => <li className="StartGame-list">{player.name}</li>)}
+            {props.game.players.map((player) => <li>{player.name}</li>)}
             </ul>
         </div>
         <hr/>

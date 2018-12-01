@@ -15,6 +15,8 @@ import gameService from './utils/gameService';
 import WaitingRoom from './pages/WaitingRoom/WaitingRoom';
 import StartGame from './pages/StartGame/StartGame';
 
+let colors = ['#b34121', '#0152a8', '#f0c830', '#7d8e14'];
+
 
 class App extends Component {
   constructor(props) {
@@ -30,7 +32,7 @@ class App extends Component {
   }
   handleStartGame = (e) => {
     e.preventDefault();
-    gameService.startGame(this.state.user);
+    gameService.startGame(this.state.game);
   }
   
   /*----- Socket.io -----*/
@@ -59,12 +61,13 @@ class App extends Component {
     var dice = document.getElementById("dice");
     dice.src="/imgs/dice-"+randomNumber+".png";
   }
-
-  handlePieceClick = () => {
-    // this.setState({pieceId: pieceId});
-    alert('Piece clicked!');
+  handleDiceRoll = (e) => {
+    e.preventDefault();
+    gameService.rollDice(this.state.game);
   }
   
+
+
   /*---------- Lifecycle Methods ----------*/
 
   componentDidMount() {
@@ -90,7 +93,7 @@ class App extends Component {
                 handlePieceClick={this.handlePieceClick}
               />;
     } else if (game && game.players.some(p => p.id === this.state.user._id) && game.players.length > 1 ) {
-      page = <StartGame game={this.state.game}/>;
+      page = <StartGame game={this.state.game} handleStartGame={this.handleStartGame}/>;
     } else {
       page = <Home 
                 user={this.state.user}

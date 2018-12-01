@@ -9,9 +9,12 @@ const StartGame = ({game}) => (
     <div className="StartGame">
       <h1>Players on the room:</h1>
       <ul>{game.players.map((player) => <li className="StartGame-list">{player.name}</li>)}</ul>
-      <button className="Home-Btn" onClick={() => alert('clicked!')}>START GAME</button>
+      <button className="Home-Btn" onClick={() => game.gameInPlay = true}>START GAME</button>
     </div>
   </div>
 )
 
 export default StartGame;
+
+
+// () => game.gameInPlay = true

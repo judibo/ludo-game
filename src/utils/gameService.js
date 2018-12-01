@@ -13,8 +13,8 @@ function createGame(user) {
 function joinGame(user, code) {
     socket.emit('joinGame', user, code);
 }
-function startGame(user) {
-    socket.emit('startGame', user);
+function startGame(code) {
+    socket.emit('startGame', code);
 }
 function rollDice(user) {
     socket.emit('rollDice', user);

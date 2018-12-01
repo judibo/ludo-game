@@ -2,13 +2,9 @@ const Game = require('../models/game');
 const io = require('../io').getIo();
 
 module.exports = {
-    createGame,
-    joinGame,
+    rollDice,
 }
 
-function createGame(req, res) {
-
-} 
-function joinGame(req, res) {
+function rollDice(req, res) {
 
 } 

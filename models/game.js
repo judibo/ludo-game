@@ -5,14 +5,23 @@ var playerSchema = new mongoose.Schema({
   name: String,
   id: String,
   role: String,
+  isTurn: {type: Boolean, default: false}
 });
 
 var gameSchema = new mongoose.Schema({
     players: [playerSchema],
-    playerIndex: Number,
+    playerIndex: {type: Number, default: function() {
+      return 
+    }},
     scoreBoard: {red:0, blue:0, green:0, yellow:0}, //keep track how many pieces the player has on the GameBoard-Center, to be able to check winner
     gameInPlay: {type: Boolean, default: false},
-    dice: Number
+    dice: Number,
+    piece: {
+            color: String,
+            player: String,
+            position: Number
+          },
+    
   }, {
     timestamps: true
   });

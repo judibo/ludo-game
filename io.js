@@ -1,5 +1,5 @@
 const Game = require('./models/game');
-
+const board = require('./config/game');
 let io;
 var games = {};
 
@@ -50,10 +50,24 @@ module.exports = {
         game.save();
       });
 
-      socket.on('rollDice', function(user) {
+      socket.on('startGame', function(roomId) {
+        var game = games[roomId];
+        game.gameInPlay = true;
+        io.emit('gameData', game);
+        game.save();
+      });
+      
+      socket.on('rollDice', function() {
+        var game = games[roomId];
         var randomNumber = Math.floor(Math.random() * 6) + 1;
-        var dice = document.getElementById("dice");
-        dice.src="/imgs/dice-"+randomNumber+".png";
+        game.dice = randomNumber;
+        io.emit('gameData', game);
+        game.save();
+      });
+      socket.on('makeMove', function() {
+        var randomNumber = Math.floor(Math.random() * 6) + 1;
+        io.emit('gameData', game);
+        game.save();
       });
     })
   },
