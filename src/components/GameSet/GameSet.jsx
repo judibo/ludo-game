@@ -4,10 +4,10 @@ import Chat from '../Chat/Chat';
 import Instructions from '../../pages/Instructions/Instructions';
 import Dice from '../Dice/Dice';
 
-const GameSet = ({game, user, handleDiceRoll}) => {
+const GameSet = ({game, user}) => {
     return (
         <div className="GameSet">
-            <Dice handleDiceRoll={handleDiceRoll} 
+            <Dice 
                 user={user}
                 game={game}/>
             <div className="GameSet-players">

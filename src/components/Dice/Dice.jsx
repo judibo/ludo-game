@@ -3,7 +3,7 @@ import gameService from '../../utils/gameService';
 import './Dice.css';
 
 
-const Dice = ({game, user, handleDiceRoll}) => {
+const Dice = ({game, user}) => {
   let playerIdx = game.players.findIndex(player => player.id === user._id)
   let playerTurn = ( game.playerIndex === playerIdx)?
     <div>
@@ -13,7 +13,7 @@ const Dice = ({game, user, handleDiceRoll}) => {
       <img src={`/imgs/dice-${game.dice}.png`} className="Dice" id="dice" alt="Dice"/>
       </div>
     </div>
-    : <div>Wait for {game.players[game.playerIndex].name} take its turn</div>;
+    : <div>Waiting for <strong>{game.players[game.playerIndex].name}</strong> take its turn</div>;
   return (
     <div>
         {playerTurn}

@@ -51,18 +51,6 @@ class App extends Component {
     this.setState({user: userService.getUser()});
   }
 
-  handleDiceRoll = () => {
-    var randomNumber = Math.floor(Math.random() * 6) + 1;
-    var dice = document.getElementById("dice");
-    dice.src="/imgs/dice-"+randomNumber+".png";
-  }
-  handleDiceRoll = (e) => {
-    e.preventDefault();
-    gameService.rollDice(this.state.game);
-  }
-  
-
-
   /*---------- Lifecycle Methods ----------*/
 
   componentDidMount() {
@@ -84,7 +72,6 @@ class App extends Component {
       page = <GamePage
                 game={this.state.game}
                 user={this.state.user}
-                handleDiceRoll={this.handleDiceRoll}
               />;
     } else if (game && game.players.some(p => p.id === this.state.user._id) && game.players.length > 1 ) {
       page = <StartGame game={this.state.game}/>; 

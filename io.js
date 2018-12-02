@@ -62,8 +62,9 @@ module.exports = {
         var game = games[socket.gameId];
         var randomNumber = Math.floor(Math.random() * 6) + 1;
         game.dice = randomNumber;
-        console.log(game.dice)
+        if (randomNumber != 6) game.playerIndex++;  // && game.pieces.atHome - need to refactor for a function to check the next player
         io.to(game.id).emit('gameData', game);
+        // if (randomNumber === 6) return console.log('You won a extra roll!');
         game.save();
       });
 
