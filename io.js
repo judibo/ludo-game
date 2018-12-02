@@ -29,6 +29,9 @@ module.exports = {
           id: user._id,
           role: 'Host',
         });
+        for (i = 0; i < 4; i++) {
+          game.pieces.push({ player: user._id });
+        };
         game.save(function(err) {
           socket.gameId = game.id;
           socket.join(game.id);
@@ -44,6 +47,9 @@ module.exports = {
           id: user._id,
           role: 'Player',
         });
+        for (i = 0; i < 4; i++) {
+          game.pieces.push({ player: user._id });
+        };
         socket.gameId = game.id;
         socket.join(roomId);
         if (game.players.length === 4) game.gameInPlay = true;
@@ -62,12 +68,25 @@ module.exports = {
         var game = games[socket.gameId];
         var randomNumber = Math.floor(Math.random() * 6) + 1;
         game.dice = randomNumber;
-        if (randomNumber != 6) game.playerIndex++;  // && game.pieces.atHome - need to refactor for a function to check the next player
+        if (randomNumber != 6 && ( game.playerIndex < game.players.length - 1)) {
+          return game.playerIndex++;
+        } else if (randomNumber != 6 && (game.playerIndex = game.players.length - 1)) {
+            return game.playerIndex = 0
+        } 
+        // else { // if (randomNumber = 6) take a new roll
+        //   console.log('hello');
+        // }
         io.to(game.id).emit('gameData', game);
-        // if (randomNumber === 6) return console.log('You won a extra roll!');
         game.save();
       });
 
+
+      socket.on('makeMove', function() {
+          //write function to move the selected piece on the track
+        io.to(game.id).emit('gameData', game);
+        game.save();
+      });
+      
       socket.on('makeMove', function() {
           //write function to move the selected piece on the track
         io.to(game.id).emit('gameData', game);

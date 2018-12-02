@@ -4,24 +4,37 @@ module.exports = {
     rollDice,
     setPieceOnTrack,
     movePiece,
-    resetPiece
+    resetPiece,
+    createPieces
 }
 
+function createPieces(req, res) {
+    for (i = 0; i < 4; i++) {
+        game.pieces.push({ player: user._id });
+    };
+}
+
+
 function rollDice(req, res) {
-    var game = games[roomId];
+    var game = games[socket.gameId];
     var randomNumber = Math.floor(Math.random() * 6) + 1;
     game.dice = randomNumber;
-    if (randomNumber === 6) { //if rolled 6, keep dice enabled for user.
-        return ;
-    } else {
-        playerIndex++; //change the player turn.
-    }
+    if (randomNumber != 6 && (game.playerIndex < game.players.length - 1)) {
+        return game.playerIndex++;
+    } else if (randomNumber != 6 && (game.playerIndex = game.players.length - 1)) {
+        return game.playerIndex = 0
+    } 
+    // else { // if (randomNumber = 6) take a new roll
+    //   console.log('hello');
+    // }
+    io.to(game.id).emit('gameData', game);
+    game.save();
 } 
 
 // Remove the piece of House and set on the 1st square on the track.
 function setPieceOnTrack(req, res) {
     var quarter = Math.floor(game.playerIndex * 13)
-    game.piece.position = quarter;
+    game.piece[idx].position = quarter;
 }
 
 function movePiece(req, res) {
