@@ -59,12 +59,14 @@ module.exports = {
       });
       
       socket.on('rollDice', function() {
-        var game = games[roomId];
+        var game = games[socket.gameId];
         var randomNumber = Math.floor(Math.random() * 6) + 1;
         game.dice = randomNumber;
+        console.log(game.dice)
         io.to(game.id).emit('gameData', game);
         game.save();
       });
+
       socket.on('makeMove', function() {
           //write function to move the selected piece on the track
         io.to(game.id).emit('gameData', game);
