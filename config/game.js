@@ -3,14 +3,19 @@ const Game = require('../models/game');
 module.exports = {
     rollDice,
     setPieceOnTrack,
-    movePiece
+    movePiece,
+    resetPiece
 }
 
 function rollDice(req, res) {
     var game = games[roomId];
     var randomNumber = Math.floor(Math.random() * 6) + 1;
     game.dice = randomNumber;
-    //if rolled 6, keep dice enabled for user.
+    if (randomNumber === 6) { //if rolled 6, keep dice enabled for user.
+        return ;
+    } else {
+        playerIndex++; //change the player turn.
+    }
 } 
 
 // Remove the piece of House and set on the 1st square on the track.
@@ -27,4 +32,9 @@ function movePiece(req, res) {
     } else {
         return playerIndex++; // pass the turner to the next user
     }
+}
+
+function resetPiece(req, res) {
+    // if game.piece.position.playerIndex === game.piece.position
+    // return game.piece.position = null && game.piece.atHome = true
 }

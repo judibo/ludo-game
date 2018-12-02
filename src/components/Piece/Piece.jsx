@@ -13,7 +13,7 @@ const Piece = (props) => {
   };
 
   return (
-    <div style={style}  onClick={props.handlePieceClick}/>
+    <div style={style}/>
   );
 }
 

@@ -5,6 +5,7 @@ var playerSchema = new mongoose.Schema({
   name: String,
   id: String,
   role: String,
+  color: String,
 });
 
 var pieceSchema = new mongoose.Schema({
@@ -12,7 +13,7 @@ var pieceSchema = new mongoose.Schema({
   position: Number,
   isSafe: {type: Boolean, default: false},
   atHome: {type: Boolean, default: true},
-  safePosition: {type: Number, default: 0},
+  safePosition: {type: Number, default: 0}, // inside the safe track, to calculate the number needed to roll on die.
 });
 
 var gameSchema = new mongoose.Schema({

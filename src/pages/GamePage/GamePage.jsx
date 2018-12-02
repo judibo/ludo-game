@@ -4,15 +4,13 @@ import './GamePage.css';
 import GameSet from '../../components/GameSet/GameSet';
 
 
-const GamePage = (props) => (
+const GamePage = ({game, user, handleDiceRoll}) => (
   <div className="GamePage">
-    <GameBoard
-      handlePieceClick={props.handlePieceClick}
-    />
+    <GameBoard />
     <GameSet 
-      game={props.game}
-      user={props.user}
-      handleDiceRoll={props.handleDiceRoll}
+      game={game}
+      user={user}
+      handleDiceRoll={handleDiceRoll}
       />
   </div>
 )

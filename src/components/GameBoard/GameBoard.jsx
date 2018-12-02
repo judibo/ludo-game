@@ -7,10 +7,10 @@ const GameBoard = (props) => (
         <div className="GameBoard-Row1">
             <div className="GameBoard-ColorHouse GameBoard-Red">
                 <div className="House-Pieces">
-                    <Piece handlePieceClick={props.handlePieceClick}/>
-                    <Piece handlePieceClick={props.handlePieceClick}/>
-                    <Piece handlePieceClick={props.handlePieceClick}/>
-                    <Piece handlePieceClick={props.handlePieceClick}/>
+                    <Piece />
+                    <Piece />
+                    <Piece />
+                    <Piece />
                 </div>
             </div>
             <div className="GameBoard-Col">
@@ -35,10 +35,10 @@ const GameBoard = (props) => (
             </div>
             <div className="GameBoard-ColorHouse GameBoard-Yellow">
                 <div className="House-Pieces">
-                    <Piece handlePieceClick={props.handlePieceClick}/>
-                    <Piece handlePieceClick={props.handlePieceClick}/>
-                    <Piece handlePieceClick={props.handlePieceClick}/>
-                    <Piece handlePieceClick={props.handlePieceClick}/>
+                    <Piece />
+                    <Piece />
+                    <Piece />
+                    <Piece />
                 </div>
             </div>
         </div>
@@ -93,10 +93,10 @@ const GameBoard = (props) => (
         <div className="GameBoard-Row3">
             <div className="GameBoard-ColorHouse GameBoard-Green">
                 <div className="House-Pieces">
-                    <Piece handlePieceClick={props.handlePieceClick}/>
-                    <Piece handlePieceClick={props.handlePieceClick}/>
-                    <Piece handlePieceClick={props.handlePieceClick}/>
-                    <Piece handlePieceClick={props.handlePieceClick}/>
+                    <Piece />
+                    <Piece />
+                    <Piece />
+                    <Piece />
                 </div>
             </div>
             <div className="GameBoard-Col">
@@ -121,10 +121,10 @@ const GameBoard = (props) => (
             </div>
             <div className="GameBoard-ColorHouse GameBoard-Blue">
                 <div className="House-Pieces">
-                    <Piece handlePieceClick={props.handlePieceClick}/>
-                    <Piece handlePieceClick={props.handlePieceClick}/>
-                    <Piece handlePieceClick={props.handlePieceClick}/>
-                    <Piece handlePieceClick={props.handlePieceClick}/>
+                    <Piece />
+                    <Piece />
+                    <Piece />
+                    <Piece />
                 </div>
             </div>
         </div>
