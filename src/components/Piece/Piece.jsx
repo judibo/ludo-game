@@ -3,25 +3,13 @@ import './Piece.css';
 import gameService from '../../utils/gameService';
 
 
-const Piece = ({game}) => {
-  let playerPieces = game.pieces.filter(piece => piece.player === game.players[0].id);
-  let showPieces = playerPieces.map((piece) => <div className="Piece-color" style={{backgroundColor: '#fff'}}/>);
-  let showPiecesClick = playerPieces.map((piece) =>
-    <div className="Piece-color" 
-          style={{backgroundColor: '#fff'}}
-          onClick={() => gameService.handleMovePosition(game._id)}/>
-  );
-  let canMove = game.dice === 6 ? showPiecesClick : showPieces;
+const Piece = ({piece, color}) => {
   return (
-    // {canMove}
     <div className="Piece">
-    {canMove}
+      <div className="Piece-color" 
+                style={{backgroundColor: color}}
+                onClick={() => gameService.handleMovePosition(piece._id)}/>
     </div>
   );
 }
-
-
-
-
-
 export default Piece;

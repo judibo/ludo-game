@@ -4,6 +4,7 @@ import './Dice.css';
 
 
 const Dice = ({game, user}) => {
+  let makeMove = game.dice === 6 ? <div>You got a 6!<br/>Bonus round</div> : null; 
   let playerIdx = game.players.findIndex(player => player.id === user._id)
   let playerTurn = ( game.playerIndex === playerIdx)?
     <div>
@@ -11,6 +12,7 @@ const Dice = ({game, user}) => {
       <div className="Dice-display">
         <button onClick={() => gameService.rollDice(game._id)}>Roll the dice</button> 
         <img src={`/imgs/dice-${game.dice}.png`} className="Dice" id="dice" alt="Dice"/>
+        {makeMove}
       </div>
     </div>
     : <div>Waiting for <strong>{game.players[game.playerIndex].name}</strong> take its turn</div>;

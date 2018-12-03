@@ -15,7 +15,7 @@ import gameService from './utils/gameService';
 import WaitingRoom from './pages/WaitingRoom/WaitingRoom';
 import StartGame from './pages/StartGame/StartGame';
 
-// let colors = ['#b34121', '#0152a8', '#f0c830', '#7d8e14'];  //set color for playerIndex
+let colors = ['#b34121', '#f0c830', '#7d8e14', '#0152a8'];  //set color for playerIndex
 
 class App extends Component {
   constructor(props) {
@@ -79,6 +79,7 @@ class App extends Component {
       page = <GamePage
                 game={this.state.game}
                 user={this.state.user}
+                colors={colors}
               />;
     } else if (game && game.players.some(p => p.id === this.state.user._id) && game.players.length > 1 ) {
       page = <StartGame game={this.state.game}/>; 

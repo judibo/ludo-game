@@ -23,3 +23,4 @@ function rollDice() {
 function handleMovePosition() {
     socket.emit('handleMovePosition');
 }
+

@@ -27,10 +27,10 @@ module.exports = {
         game.players.push({
           name: user.name,
           id: user._id,
-          role: 'Host',
         });
+        var playerIdx = game.players.length - 1;
         for (i = 0; i < 4; i++) {
-          game.pieces.push({ player: user._id });
+          game.players[playerIdx].pieces.push({ player: playerIdx });
         };
         game.save(function(err) {
           socket.gameId = game.id;
@@ -45,10 +45,10 @@ module.exports = {
         game.players.push({
           name: user.name,
           id: user._id,
-          role: 'Player',
         });
+        var playerIdx = game.players.length - 1;
         for (i = 0; i < 4; i++) {
-          game.pieces.push({ player: user._id });
+          game.players[playerIdx].pieces.push({ player: playerIdx });
         };
         socket.gameId = game.id;
         socket.join(roomId);
@@ -76,8 +76,8 @@ module.exports = {
         } 
         else {
           let firstPosition = Math.floor(game.playerIndex * 13)  // place the piece on the 1st square of the track
-          game.pieces[0].position = firstPosition;
-          game.pieces[0].atHome = false
+          game.players[game.playerIndex].pieces[0].position = firstPosition;
+          game.players[game.playerIndex].pieces[0].atHome = false
         }
         io.to(game.id).emit('gameData', game);
         game.save();
@@ -96,8 +96,8 @@ module.exports = {
       socket.on('handleMovePosition', function() {
         var game = games[socket.gameId];
         // game.pieces[idx].position += game.dice; // Adds the value rolled on the dice to the position.
-        game.pieces[0].position += game.dice;
-        console.log(`Position: ${game.pieces[0].position}`);
+        game.players[game.playerIndex].pieces[0].position += game.dice;
+        console.log(`Position: ${game.players[game.playerIndex].pieces[0].position}`);
         io.to(game.id).emit('gameData', game);
         game.save();
       });

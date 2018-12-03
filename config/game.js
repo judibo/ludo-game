@@ -1,13 +1,27 @@
 const Game = require('../models/game');
 
 module.exports = {
-    rollDice,
-    checkIfMoveAvailable,
-    setPieceOnTrack,
-    movePiece,
-    resetPiece,
-    createPieces
+  createPlayer,
+  rollDice,
+  checkIfMoveAvailable,
+  setPieceOnTrack,
+  movePiece,
+  resetPiece,
+  createPieces
 }
+
+function createPlayer(req, res) {
+  game.players.push({
+    name: user.name,
+    id: user._id,
+  });
+  var playerIdx = game.players.length - 1;
+  for (i = 0; i < 4; i++) {
+    game.players[playerIdx].pieces.push({ player: playerIdx });
+  };
+}
+
+
 
 function createPieces(req, res) {
     for (i = 0; i < 4; i++) {
@@ -28,41 +42,42 @@ function rollDice(req, res) {
     // else { // if (randomNumber = 6) take a new roll
     //   console.log('hello');
     // }
-    io.to(game.id).emit('gameData', game);
     game.save();
 } 
 
 
 
 function checkIfMoveAvailable(req, res) {
-    // case 1: game.dice === 6;
-    // case 2: !game.piece[idx].atHome;
-    // case 3: game.piece[idx].position != game.piece[idx].position (same player)
+  // case 1: !game.pieces[Idx].atHome;
+  // case 1: game.dice === 6;
+    // case 3: game.pieces[selPieceIdx].position != game.pieces[idx].position (same player)
 }
 
 // Remove the piece of House and set on the 1st square on the track.
 function setPieceOnTrack(req, res) {
+    game.piece[selPieceIdx].atHome = false;
     var firstPosition = Math.floor(game.playerIndex * 13)
-    game.piece[idx].position = firstPosition;
+    game.piece[selPieceIdx].position = firstPosition;
 }
 
 function movePiece(req, res) {
-    if (!game.piece.atHome && !game.piece.isSafe){ //check if piece is available to move
-        game.piece[idx].position += game.dice;
+    if (!game.piece.atHome && !game.piece.isSafe){
+        game.piece[selPieceIdx].position += game.dice;
     } else if(!game.piece.atHome && game.piece.isSafe) {
         //the piece has to take the exact number on dice to enter the center (endGame) 
     } else {
+        // pass the turn to the next user
         if (game.playerIndex < game.players.length - 1) {
             game.playerIndex++;
          } else if (game.playerIndex = game.players.length - 1) {
-             game.playerIndex = 0 // pass the turn to the next user
+             game.playerIndex = 0 
         }
     }
 }
 
 
 function resetPiece(req, res) {
-    game.piece[idx] = null;
-    // if game.piece.position.playerIndex === game.piece.position
-    // return game.piece.position = null && game.piece.atHome = true
+    game.pieces[selPieceIdx].position = null;
+    // if game.pieces[selPieceIdx].position === game.piece.position
+    // return game.pieces[selPieceIdx].position = null && game.pieces[selPieceIdx].atHome = true
 }

@@ -4,19 +4,14 @@
     align-items: center;
     justify-content: center;
   }
-  
 .Piece-color:hover {
   opacity: 0.5;
 }
-
-
 .Piece-color {
     width: 15px;
     height: 15px;
     margin: 5px;
     border-radius: 50%;
-    background-color: white;
-    /* opacity: 0.5; */
-    border: 5px solid grey;
+    border: 5px solid white;
     cursor: pointer;
 }
