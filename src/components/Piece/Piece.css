@@ -1,0 +1,31 @@
+/* .Piece {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+  } */
+  
+.Piece-color:hover {
+        opacity: 1;
+}
+  
+  /* .Piece-color {
+    width: 40px;
+    height: 40px;
+    margin: 5px;
+    border-radius: 50%;
+    opacity: 0.85;
+    background-color: white;
+    cursor: pointer;
+  }; */
+  
+
+.Piece-color {
+    width: 30px;
+    height: 30px;
+    margin: 5px;
+    border-radius: 50%;
+    background-color: white;
+    opacity: 0.5;
+    border: 1px solid grey;
+    cursor: pointer;
+}

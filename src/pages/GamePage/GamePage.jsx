@@ -6,7 +6,10 @@ import GameSet from '../../components/GameSet/GameSet';
 
 const GamePage = ({game, user}) => (
   <div className="GamePage">
-    <GameBoard />
+    <GameBoard
+      game={game}
+      user={user}
+    />
     <GameSet 
       game={game}
       user={user}
