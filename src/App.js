@@ -51,6 +51,10 @@ class App extends Component {
     this.setState({user: userService.getUser()});
   }
 
+  handlePieceSelection = (pieceIdx) => {
+    this.setState({selPieceIdx: pieceIdx});
+  }
+
   /*---------- Lifecycle Methods ----------*/
 
   componentDidMount() {
@@ -67,7 +71,10 @@ class App extends Component {
     let game = this.state.game;
     let page;
     if (game && game.players.length === 1) {
-      page = <WaitingRoom game={this.state.game} user={this.state.user}/>;
+      page = <WaitingRoom 
+                game={this.state.game}
+                user={this.state.user}
+              />;
     } else if (game && game.gameInPlay) {
       page = <GamePage
                 game={this.state.game}

@@ -5,6 +5,7 @@ export default {
     joinGame,
     startGame,
     rollDice,
+    handleMovePosition,
 };
 
 function createGame(user) {
@@ -18,4 +19,7 @@ function startGame() {
 }
 function rollDice() {
     socket.emit('rollDice');
+}
+function handleMovePosition() {
+    socket.emit('handleMovePosition');
 }

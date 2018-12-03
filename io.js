@@ -68,30 +68,39 @@ module.exports = {
         var game = games[socket.gameId];
         var randomNumber = Math.floor(Math.random() * 6) + 1;
         game.dice = randomNumber;
-        if (randomNumber != 6 && ( game.playerIndex < game.players.length - 1)) {
-          return game.playerIndex++;
-        } else if (randomNumber != 6 && (game.playerIndex = game.players.length - 1)) {
-            return game.playerIndex = 0
+        console.log(`Dice:${game.dice}`);
+         if (game.dice != 6 && ( game.playerIndex < game.players.length - 1)) {
+           game.playerIndex++;
+        } else if (game.dice != 6 && (game.playerIndex = game.players.length - 1)) {
+            game.playerIndex = 0
         } 
-        // else { // if (randomNumber = 6) take a new roll
-        //   console.log('hello');
-        // }
+        else {
+          let positionMove = Math.floor(game.playerIndex * 13)  // place the piece on the 1st square of the track
+          game.pieces[0].position = positionMove;
+        }
         io.to(game.id).emit('gameData', game);
         game.save();
       });
 
+      // Check if player can make a move
+      socket.on('checkMoveAvailable', function() {
+        var game = games[socket.gameId];
+        // CODE HERE...
+        io.to(game.id).emit('gameData', game);
+        game.save();
+      })
 
-      socket.on('makeMove', function() {
-          //write function to move the selected piece on the track
+
+      // Move the selected piece inside the track
+      socket.on('handleMovePosition', function() {
+        var game = games[socket.gameId];
+        // game.pieces[idx].position += game.dice; // Adds the value rolled on the dice to the position.
+        game.pieces[0].position += game.dice;
+        console.log(`Position: ${game.pieces[0].position}`);
         io.to(game.id).emit('gameData', game);
         game.save();
       });
-      
-      socket.on('makeMove', function() {
-          //write function to move the selected piece on the track
-        io.to(game.id).emit('gameData', game);
-        game.save();
-      });
+
     })
   },
   

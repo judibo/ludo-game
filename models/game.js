@@ -1,7 +1,6 @@
 var mongoose = require('mongoose');
 
 var playerSchema = new mongoose.Schema({
-  // name: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
   name: String,
   id: String,
   role: String,
@@ -30,4 +29,3 @@ var gameSchema = new mongoose.Schema({
 
   
 module.exports = mongoose.model('Game', gameSchema);
-

@@ -1,12 +1,18 @@
 import React from 'react';
 import './Piece.css';
+import gameService from '../../utils/gameService';
 
 
 const Piece = ({game}) => {
-  let player1Pieces = game.pieces.filter(piece => piece.player === game.players[0].id);
+  let playerPieces = game.pieces.filter(piece => piece.player === game.players[0].id);
+  let showPieces = playerPieces.map((piece) => <div className="Piece-color" style={{backgroundColor: '#fff'}}/>);
+  let showPiecesClick = playerPieces.map((piece) => <div className="Piece-color" style={{backgroundColor: '#fff'}} onClick={() => gameService.handleMovePosition(game._id)}/>);
+  let canMove = game.dice === 6 ?
+    showPiecesClick : showPieces;
   return (
+    // {canMove}
     <div className="Piece">
-        {player1Pieces.map((piece) => <div className="Piece-color" style={{backgroundColor: 'yellow'}} ></div>)}
+    {canMove}
     </div>
   );
 }
