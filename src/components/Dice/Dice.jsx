@@ -9,14 +9,14 @@ const Dice = ({game, user}) => {
     <div>
       <h3>It's your turn!</h3>
       <div className="Dice-display">
-      <button onClick={() => gameService.rollDice(game._id)}>Roll the dice</button> 
-      <img src={`/imgs/dice-${game.dice}.png`} className="Dice" id="dice" alt="Dice"/>
+        <button onClick={() => gameService.rollDice(game._id)}>Roll the dice</button> 
+        <img src={`/imgs/dice-${game.dice}.png`} className="Dice" id="dice" alt="Dice"/>
       </div>
     </div>
     : <div>Waiting for <strong>{game.players[game.playerIndex].name}</strong> take its turn</div>;
   return (
     <div>
-        {playerTurn}
+      {playerTurn}
     </div>
   );
 };

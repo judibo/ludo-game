@@ -69,14 +69,15 @@ module.exports = {
         var randomNumber = Math.floor(Math.random() * 6) + 1;
         game.dice = randomNumber;
         console.log(`Dice:${game.dice}`);
-         if (game.dice != 6 && ( game.playerIndex < game.players.length - 1)) {
+        if (game.dice != 6 && ( game.playerIndex < game.players.length - 1)) {
            game.playerIndex++;
         } else if (game.dice != 6 && (game.playerIndex = game.players.length - 1)) {
             game.playerIndex = 0
         } 
         else {
-          let positionMove = Math.floor(game.playerIndex * 13)  // place the piece on the 1st square of the track
-          game.pieces[0].position = positionMove;
+          let firstPosition = Math.floor(game.playerIndex * 13)  // place the piece on the 1st square of the track
+          game.pieces[0].position = firstPosition;
+          game.pieces[0].atHome = false
         }
         io.to(game.id).emit('gameData', game);
         game.save();

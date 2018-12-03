@@ -2,6 +2,7 @@ const Game = require('../models/game');
 
 module.exports = {
     rollDice,
+    checkIfMoveAvailable,
     setPieceOnTrack,
     movePiece,
     resetPiece,
@@ -31,23 +32,37 @@ function rollDice(req, res) {
     game.save();
 } 
 
+
+
+function checkIfMoveAvailable(req, res) {
+    // case 1: game.dice === 6;
+    // case 2: !game.piece[idx].atHome;
+    // case 3: game.piece[idx].position != game.piece[idx].position (same player)
+}
+
 // Remove the piece of House and set on the 1st square on the track.
 function setPieceOnTrack(req, res) {
-    var quarter = Math.floor(game.playerIndex * 13)
-    game.piece[idx].position = quarter;
+    var firstPosition = Math.floor(game.playerIndex * 13)
+    game.piece[idx].position = firstPosition;
 }
 
 function movePiece(req, res) {
     if (!game.piece.atHome && !game.piece.isSafe){ //check if piece is available to move
-        game.piece.position += game.dice;
+        game.piece[idx].position += game.dice;
     } else if(!game.piece.atHome && game.piece.isSafe) {
         //the piece has to take the exact number on dice to enter the center (endGame) 
     } else {
-        return playerIndex++; // pass the turner to the next user
+        if (game.playerIndex < game.players.length - 1) {
+            game.playerIndex++;
+         } else if (game.playerIndex = game.players.length - 1) {
+             game.playerIndex = 0 // pass the turn to the next user
+        }
     }
 }
 
+
 function resetPiece(req, res) {
+    game.piece[idx] = null;
     // if game.piece.position.playerIndex === game.piece.position
     // return game.piece.position = null && game.piece.atHome = true
 }

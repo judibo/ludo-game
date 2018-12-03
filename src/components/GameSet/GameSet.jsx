@@ -5,9 +5,7 @@ import Instructions from '../../pages/Instructions/Instructions';
 import Dice from '../Dice/Dice';
 
 const GameSet = ({game, user}) => {
-    let makeMove = game.dice === 6 ?
-    <div>{game.players[game.playerIndex].name} got a 6!</div>
-    : null; 
+    let makeMove = game.dice === 6 ? <div>{game.players[game.playerIndex].name} got a 6!</div> : null; 
     return (
         <div className="GameSet">
             <Dice 
