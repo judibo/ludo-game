@@ -1,61 +1,54 @@
 .GameBoard {
     color: black;
-    height: 100vh;
-    padding-top: 2em;
+    height: 100%;
+    padding: 2em;
     text-align: center;
     margin: auto;
 }
 .GameBoard-Row1{
     display: flex;
-    height: 200px;
     align-items: flex-end;
 }
 .GameBoard-Row3{
     display: flex;
-    height: 200px;
     align-items: flex-start;
 }
 .GameBoard-Col {
-    width: 111px;
+    width: 81px;
     display: flex;
     flex-wrap: wrap;
 }
 .GameBoard-Row2 {
     display: flex;
-    margin-left: -36px;
+    margin-left: -26px;
 }
 .GameBoard-Row2>.GameBoard-Col {
-    width: 222px;
+    width: 162px;
 }
 .GameBoard-Col>div {
-    height: 35px;
-    width: 35px;
+    height: 25px;
+    width: 25px;
     border: 1px solid black;
 }
-
 .GameBoard-ColorHouse {
-    width: 186px;
-    height:186px;
+    width: 135px;
+    height:135px;
     display: flex;
-
+    align-items: center;
+    justify-content: center;
 }
-
 .GameBoard-Red {
     border-top-left-radius: 25px
 }
-
 .GameBoard-Yellow {
     border-top-right-radius: 25px;
 }
-
 .GameBoard-Green {
     border-bottom-left-radius: 25px
 }
-
 .GameBoard-Blue {
     border-bottom-right-radius: 25px
 }
-
 .yellow, .GameBoard-Yellow, #top {
     background-color: #f0c830;
 }
@@ -68,51 +61,39 @@
 .blue, .GameBoard-Blue, #right {
     background-color: #0152a8;
 }
+.House-Pieces {
+    width: 84px;
+    height: 84px;
+    display: flex;
+    flex-wrap: wrap;
+}
 
-
+/*---- Style center box ----*/
 .GameBoard-Center {
-        position: relative;
-        height: 111px;
-        width: 111px;
-        overflow: hidden;
-        transition: all 1s;
-    }
-    #top, #left, #right, #bottom {
-        border: 1px solid black;
-        position: absolute;
-        height: calc(100% / 1.414);
-        width: calc(100% / 1.414);
-        top: 50%;
-        left: 50%;
-        transform-origin: 0% 0%;
-      }
-      #right {
-        transform: rotate(-45deg);
-      }
-      #bottom {
-        transform: rotate(45deg);
-      }
-      #top {
-        transform: rotate(-135deg);
-      }
-      #left {
-        transform: rotate(135deg);
-      }
-
-    .piece {
-        width: 40;
-        height: 40;
-        margin: 5;
-        border-radius: 50%;
-        background-color: grey;
-        opacity: 0.85;
-        border: 1px dashed grey;
-        cursor: pointer;
-    }
-
-    .House-Pieces {
-        width: 84px;
-        height: 84px;
-        display: flex;
-        flex-wrap: wrap;
-    }
+    position: relative;
+    height: 81px;
+    width: 81px;
+    overflow: hidden;
+    transition: all 1s;
+}
+#top, #left, #right, #bottom {
+    border: 1px solid black;
+    position: absolute;
+    height: calc(100% / 1.414);
+    width: calc(100% / 1.414);
+    top: 50%;
+    left: 50%;
+    transform-origin: 0% 0%;
+}
+#right {
+    transform: rotate(-45deg);
+}
+#bottom {
+    transform: rotate(45deg);
+}
+#top {
+    transform: rotate(-135deg);
+}
+#left {
+    transform: rotate(135deg);
+}

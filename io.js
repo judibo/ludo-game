@@ -84,7 +84,7 @@ module.exports = {
       });
 
       // Check if player can make a move
-      socket.on('checkMoveAvailable', function() {
+      socket.on('checkIfMoveAvailable', function() {
         var game = games[socket.gameId];
         // CODE HERE...
         io.to(game.id).emit('gameData', game);

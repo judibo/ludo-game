@@ -1,3 +1,4 @@
 .GamePage {
     display: flex;
+    flex-wrap: wrap
 }

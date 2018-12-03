@@ -1,31 +1,22 @@
-/* .Piece {
+.Piece {
     display: flex;
-    flex-flow: column nowrap;
+    flex-flow: wrap;
     align-items: center;
-  } */
+    justify-content: center;
+  }
   
 .Piece-color:hover {
-        opacity: 1;
+  opacity: 0.5;
 }
-  
-  /* .Piece-color {
-    width: 40px;
-    height: 40px;
-    margin: 5px;
-    border-radius: 50%;
-    opacity: 0.85;
-    background-color: white;
-    cursor: pointer;
-  }; */
-  
+
 
 .Piece-color {
-    width: 30px;
-    height: 30px;
+    width: 15px;
+    height: 15px;
     margin: 5px;
     border-radius: 50%;
     background-color: white;
-    opacity: 0.5;
-    border: 1px solid grey;
+    /* opacity: 0.5; */
+    border: 5px solid grey;
     cursor: pointer;
 }

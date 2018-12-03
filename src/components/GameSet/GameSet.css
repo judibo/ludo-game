@@ -2,6 +2,7 @@
     color: black;
     padding: 1em;
     background-color: gainsboro;
+    margin: auto;
 }
 .GameSet-players {
     text-align: left;
@@ -19,4 +20,12 @@
     border-radius: 50%;
     opacity: 0.85;
     cursor: pointer;
-  };
+};
+
+
+@media screen and (max-width: 1030px) {
+    .GameSet {
+        width: 100%;
+    }
+    
+}
