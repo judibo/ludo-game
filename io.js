@@ -1,5 +1,6 @@
 const Game = require('./models/game');
 const board = require('./config/game');
+// const gameService = require( './src/utils/gameService');
 let io;
 var games = {};
 
@@ -56,7 +57,7 @@ module.exports = {
         io.to(game.id).emit('gameData', game);
         game.save();
       });
-
+     
       socket.on('startGame', function() {
         var game = games[socket.gameId];
         game.gameInPlay = true;
@@ -69,35 +70,26 @@ module.exports = {
         var randomNumber = Math.floor(Math.random() * 6) + 1;
         game.dice = randomNumber;
         console.log(`Dice:${game.dice}`);
-        if (game.dice != 6 && ( game.playerIndex < game.players.length - 1)) {
-           game.playerIndex++;
-        } else if (game.dice != 6 && (game.playerIndex = game.players.length - 1)) {
-            game.playerIndex = 0
-        } 
-        else {
-          let firstPosition = Math.floor(game.playerIndex * 13)  // place the piece on the 1st square of the track
-          game.players[game.playerIndex].pieces[0].position = firstPosition;
-          game.players[game.playerIndex].pieces[0].atHome = false
-        }
+        board.checkIfMoveAvailable(game);
+        // game.playerIndex = (++game.playerIndex) % game.players.length;
+        io.to(game.id).emit('gameData', game);
+        game.save();
+      });
+      
+      socket.on('setPieceOnTrack', function() {
+        var game = games[socket.gameId];
+        game.players[game.playerIndex].piece[selPieceIdx].atHome = false;
+        var firstPosition = Math.floor(game.playerIndex * 13);
+        game.players[game.playerIndex].piece[selPieceIdx].position = firstPosition;
         io.to(game.id).emit('gameData', game);
         game.save();
       });
 
-      // Check if player can make a move
-      socket.on('checkIfMoveAvailable', function() {
-        var game = games[socket.gameId];
-        // CODE HERE...
-        io.to(game.id).emit('gameData', game);
-        game.save();
-      })
-
-
       // Move the selected piece inside the track
       socket.on('handleMovePosition', function() {
         var game = games[socket.gameId];
-        // game.pieces[idx].position += game.dice; // Adds the value rolled on the dice to the position.
-        game.players[game.playerIndex].pieces[0].position += game.dice;
-        console.log(`Position: ${game.players[game.playerIndex].pieces[0].position}`);
+        game.players[game.playerIndex].pieces[selPieceIdx].position += game.dice;
+        console.log(`Position: ${game.players[game.playerIndex].pieces[selPieceIdx].position}`);
         io.to(game.id).emit('gameData', game);
         game.save();
       });

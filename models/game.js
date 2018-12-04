@@ -14,6 +14,7 @@ var playerSchema = new mongoose.Schema({
   color: String,
   pieces: [pieceSchema],
   score: {type: Number, default: 0},
+  rolls: [Number]
 });
 
 var gameSchema = new mongoose.Schema({

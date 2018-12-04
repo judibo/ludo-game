@@ -13,7 +13,7 @@ const GameSet = ({game, user, colors}) => {
             <div className="GameSet-players">
                 <h4>Players online:</h4>
                 <ul> 
-                    {game.players.map((player) => <li style={{color: colors[game.player]}}>{player.name} </li>)}
+                    {game.players.map((player) => <li style={{color: colors[game.playerIndex]}}>{player.name} </li>)}
                 </ul>
             </div>
             <hr/>

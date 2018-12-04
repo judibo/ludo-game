@@ -7,8 +7,16 @@ module.exports = {
   setPieceOnTrack,
   movePiece,
   resetPiece,
-  createPieces
+  getPieceAtPosition,
+  computeNextPos,
 }
+
+const lookup = [
+  {firstPosition: 0, lastPosition: 50},
+  {firstPosition: 13, lastPosition: 11},
+  {firstPosition: 26, lastPosition: 24},
+  {firstPosition: 39, lastPosition: 37},
+];
 
 function createPlayer(req, res) {
   game.players.push({
@@ -21,43 +29,60 @@ function createPlayer(req, res) {
   };
 }
 
-
-
-function createPieces(req, res) {
-    for (i = 0; i < 4; i++) {
-        game.pieces.push({ player: user._id });
-    };
+function rollDice(req, res) {
+  var randomNumber = Math.floor(Math.random() * 6) + 1;
+  game.dice = randomNumber;
+  console.log(`Dice:${game.dice}`);
+  gameService.checkIfMoveAvailable(game);
 }
 
+function getPieceAtPosition(game, position) {
+  for (let i = 0; i < game.players.length; i++) {
+     let player = game.players[i];
+     let piece = player.pieces.find(piece => piece.position === position);
+     if (piece) return piece;
+  }
+  return null;
+}
 
-function rollDice(req, res) {
-    var game = games[socket.gameId];
-    var randomNumber = Math.floor(Math.random() * 6) + 1;
-    game.dice = randomNumber;
-    if (randomNumber != 6 && (game.playerIndex < game.players.length - 1)) {
-        return game.playerIndex++;
-    } else if (randomNumber != 6 && (game.playerIndex = game.players.length - 1)) {
-        return game.playerIndex = 0
-    } 
-    // else { // if (randomNumber = 6) take a new roll
-    //   console.log('hello');
-    // }
-    game.save();
-} 
+function computeNextPos(playerIndex, curPos, dice) {
+    let tempNext = curPos + dice;
+    let lastPos = lookup[playerIndex].lastPosition;
+    if(curPos < lastPosition && tempNext > lastPosition)  {
+        //Check safe lane
+    }  else {
+        tempNext = tempNext % 52;
+        let otherPiece = getPieceAtPosition(tempNext);
+    }
+    return {valid: true, isSafe: false, position: curPos}
+}
 
-
-
-function checkIfMoveAvailable(req, res) {
-  // case 1: !game.pieces[Idx].atHome;
-  // case 1: game.dice === 6;
-    // case 3: game.pieces[selPieceIdx].position != game.pieces[idx].position (same player)
+function checkIfMoveAvailable(game) {
+  for (let i = 0; i <game.players[game.playerIndex].pieces.length; i++){
+    let p = game.players[game.playerIndex].pieces[i];
+    let nextPosition = p.position + game.dice;
+    if (!p.atHome && (newPosition !== getPieceAtPosition(game, nextPosition))) {
+      var newPosition = nextPosition;
+      game.waitingToMove = true;
+      console.log('works')
+      return true;
+    } else if (p.atHome && game.dice === 6 && !getPieceAtPosition(game, lookup[game.playerIndex].firstPosition)) {
+      game.waitingToMove = true;
+      console.log('works2')
+      return true;
+    }
+  }
+  game.playerIndex = (++game.playerIndex) % game.players.length;
+  console.log('change player');
+  game.waitingToMove = false;
+  return false;
 }
 
 // Remove the piece of House and set on the 1st square on the track.
 function setPieceOnTrack(req, res) {
-    game.piece[selPieceIdx].atHome = false;
-    var firstPosition = Math.floor(game.playerIndex * 13)
-    game.piece[selPieceIdx].position = firstPosition;
+    game.players[game.playerIndex].piece[selPieceIdx].atHome = false;
+    var firstPosition = Math.floor(game.playerIndex * 13);
+    game.players[game.playerIndex].piece[selPieceIdx].position = firstPosition;
 }
 
 function movePiece(req, res) {
@@ -74,7 +99,6 @@ function movePiece(req, res) {
         }
     }
 }
-
 
 function resetPiece(req, res) {
     game.pieces[selPieceIdx].position = null;
