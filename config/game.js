@@ -2,12 +2,11 @@ const Game = require('../models/game');
 
 module.exports = {
   createPlayer,
-  rollDice,
   checkIfMoveAvailable,
+  getPieceAtPosition,
   setPieceOnTrack,
   movePiece,
   resetPiece,
-  getPieceAtPosition,
   computeNextPos,
 }
 
@@ -29,32 +28,25 @@ function createPlayer(req, res) {
   };
 }
 
-function rollDice(req, res) {
-  var randomNumber = Math.floor(Math.random() * 6) + 1;
-  game.dice = randomNumber;
-  console.log(`Dice:${game.dice}`);
-  gameService.checkIfMoveAvailable(game);
-}
-
 function getPieceAtPosition(game, position) {
   for (let i = 0; i < game.players.length; i++) {
-     let player = game.players[i];
-     let piece = player.pieces.find(piece => piece.position === position);
-     if (piece) return piece;
+    let player = game.players[i];
+    let piece = player.pieces.find(piece => piece.position === position);
+    if (piece) return piece;
   }
   return null;
 }
 
 function computeNextPos(playerIndex, curPos, dice) {
-    let tempNext = curPos + dice;
-    let lastPos = lookup[playerIndex].lastPosition;
-    if(curPos < lastPosition && tempNext > lastPosition)  {
-        //Check safe lane
-    }  else {
-        tempNext = tempNext % 52;
-        let otherPiece = getPieceAtPosition(tempNext);
-    }
-    return {valid: true, isSafe: false, position: curPos}
+  let tempNext = curPos + dice;
+  let lastPos = lookup[playerIndex].lastPosition;
+  if(curPos < lastPosition && tempNext > lastPosition)  {
+      //Check safe lane
+  }  else {
+      tempNext = tempNext % 52;
+      let otherPiece = getPieceAtPosition(tempNext);
+  }
+  return {valid: true, isSafe: false, position: curPos}
 }
 
 function checkIfMoveAvailable(game) {
@@ -73,35 +65,33 @@ function checkIfMoveAvailable(game) {
     }
   }
   game.playerIndex = (++game.playerIndex) % game.players.length;
-  console.log('change player');
   game.waitingToMove = false;
   return false;
 }
 
 // Remove the piece of House and set on the 1st square on the track.
-function setPieceOnTrack(req, res) {
-    game.players[game.playerIndex].piece[selPieceIdx].atHome = false;
-    var firstPosition = Math.floor(game.playerIndex * 13);
-    game.players[game.playerIndex].piece[selPieceIdx].position = firstPosition;
+function setPieceOnTrack(game) {
+  game.players[game.playerIndex].pieces[selPieceIdx].atHome = false;
+  var firstPosition = Math.floor(game.playerIndex * 13);
+  game.players[game.playerIndex].pieces[selPieceIdx].position = firstPosition;
+  game.waitingToMove = false;
 }
 
 function movePiece(req, res) {
-    if (!game.piece.atHome && !game.piece.isSafe){
-        game.piece[selPieceIdx].position += game.dice;
-    } else if(!game.piece.atHome && game.piece.isSafe) {
-        //the piece has to take the exact number on dice to enter the center (endGame) 
-    } else {
-        // pass the turn to the next user
-        if (game.playerIndex < game.players.length - 1) {
-            game.playerIndex++;
-         } else if (game.playerIndex = game.players.length - 1) {
-             game.playerIndex = 0 
-        }
-    }
+  if (!game.piece.atHome && !game.piece.isSafe){
+    game.piece[selPieceIdx].position += game.dice;
+  } else if(!game.piece.atHome && game.piece.isSafe) {
+      //the piece has to take the exact number on dice to enter the center (endGame) 
+  } else {
+      // pass the turn to the next user
+      game.playerIndex = (++game.playerIndex) % game.players.length;
+      game.waitingToMove = false;
+  }
 }
 
+
 function resetPiece(req, res) {
-    game.pieces[selPieceIdx].position = null;
+    game.players[playerIdx].pieces[selPieceIdx].position = null;
     // if game.pieces[selPieceIdx].position === game.piece.position
     // return game.pieces[selPieceIdx].position = null && game.pieces[selPieceIdx].atHome = true
 }

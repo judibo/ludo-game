@@ -70,8 +70,11 @@ module.exports = {
         var randomNumber = Math.floor(Math.random() * 6) + 1;
         game.dice = randomNumber;
         console.log(`Dice:${game.dice}`);
+        // game.players[game.playerIndex].rolls.push({
+        //   randomNumber
+        // });
+        // console.log(game.players[game.playerIndex].rolls)
         board.checkIfMoveAvailable(game);
-        // game.playerIndex = (++game.playerIndex) % game.players.length;
         io.to(game.id).emit('gameData', game);
         game.save();
       });
@@ -88,8 +91,9 @@ module.exports = {
       // Move the selected piece inside the track
       socket.on('handleMovePosition', function() {
         var game = games[socket.gameId];
-        game.players[game.playerIndex].pieces[selPieceIdx].position += game.dice;
-        console.log(`Position: ${game.players[game.playerIndex].pieces[selPieceIdx].position}`);
+        board.setPieceOnTrack(game);
+        // game.players[game.playerIndex].pieces[selPieceIdx].position += game.dice;
+        // console.log(`Position: ${game.players[game.playerIndex].pieces[selPieceIdx].position}`);
         io.to(game.id).emit('gameData', game);
         game.save();
       });

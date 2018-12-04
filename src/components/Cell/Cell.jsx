@@ -1,13 +1,13 @@
 import React from 'react';
+import './Cell.css';
 import gameService from '../../utils/gameService';
 
 const Cell = ({position, game, colors}) => {
   let piece;
   if (game) piece = gameService.getPieceAtPosition(game, position);
-  debugger;
   return (
-    <div>
-      {game && <div style={{backgroundColor: 'red'}}/> }
+    <div className="Cell">
+      {game && <div className="Cell-color" style={{backgroundColor: 'grey'}}/> }
       {/* {game && <div style={{backgroundColor: colors[piece.player]}}/> } */}
     </div>
     );

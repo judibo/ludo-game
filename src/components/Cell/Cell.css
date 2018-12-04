@@ -1,0 +1,12 @@
+.Cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Cell-color {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    cursor: pointer;
+}
