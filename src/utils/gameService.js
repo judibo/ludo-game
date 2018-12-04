@@ -56,8 +56,8 @@ function rollDice() {
     socket.emit('rollDice');
 }
 
-function setPieceOnTrack() {
-    socket.emit('setPieceOnTrack');
+function setPieceOnTrack(piece) {
+    socket.emit('setPieceOnTrack', piece);
 }
 
 function handleMovePosition() {

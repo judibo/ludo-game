@@ -51,10 +51,6 @@ class App extends Component {
     this.setState({user: userService.getUser()});
   }
 
-  handlePieceSelection = (pieceIdx) => {
-    this.setState({selPieceIdx: pieceIdx});
-  }
-
   /*---------- Lifecycle Methods ----------*/
 
   componentDidMount() {

@@ -15,3 +15,12 @@
     border: 5px solid white;
     cursor: pointer;
 }
+
+.Piece-color-noHover {
+  width: 15px;
+  height: 15px;
+  margin: 5px;
+  border-radius: 50%;
+  border: 5px solid white;
+  cursor: pointer;
+}

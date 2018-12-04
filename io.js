@@ -65,11 +65,9 @@ module.exports = {
         game.save();
       });
       
-      socket.on('setPieceOnTrack', function() {
+      socket.on('setPieceOnTrack', function(piece) {
         var game = games[socket.gameId];
-        game.players[game.playerIndex].piece[selPieceIdx].atHome = false;
-        var firstPosition = Math.floor(game.playerIndex * 13);
-        game.players[game.playerIndex].piece[selPieceIdx].position = firstPosition;
+        board.setPieceOnTrack(game, piece);
         io.to(game.id).emit('gameData', game);
         game.save();
       });
@@ -77,7 +75,7 @@ module.exports = {
       // Move the selected piece inside the track
       socket.on('handleMovePosition', function() {
         var game = games[socket.gameId];
-        board.setPieceOnTrack(game);
+        board.setPieceOnTrack(game, piece);
         // game.players[game.playerIndex].pieces[selPieceIdx].position += game.dice;
         // console.log(`Position: ${game.players[game.playerIndex].pieces[selPieceIdx].position}`);
         io.to(game.id).emit('gameData', game);

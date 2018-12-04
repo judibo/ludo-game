@@ -50,7 +50,7 @@ function computeNextPos(playerIndex, curPos, dice) {
 }
 
 function checkIfMoveAvailable(game) {
-  for (let i = 0; i <game.players[game.playerIndex].pieces.length; i++){
+  for (let i = 0; i < game.players[game.playerIndex].pieces.length; i++){
     let p = game.players[game.playerIndex].pieces[i];
     let validMove = checkIfMoveValid(game, p);
     if (validMove) return true;
@@ -76,10 +76,10 @@ function checkIfMoveValid(game, p) {
 }
 
 // Remove the piece of House and set on the 1st square on the track.
-function setPieceOnTrack(game) {
-  game.players[game.playerIndex].pieces[selPieceIdx].atHome = false;
-  var firstPosition = Math.floor(game.playerIndex * 13);
-  game.players[game.playerIndex].pieces[selPieceIdx].position = firstPosition;
+function setPieceOnTrack(game, piece) {
+  var playerPiece = game.players[game.playerIndex].pieces.find(p => p._id.equals(piece._id));
+  playerPiece.position = lookup[game.playerIndex].firstPosition;
+  playerPiece.atHome = false;
   game.waitingToMove = false;
 }
 
