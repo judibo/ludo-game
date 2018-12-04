@@ -17,7 +17,7 @@ const lookup = [
   {firstPosition: 39, lastPosition: 37},
 ];
 
-function createPlayer(req, res) {
+function createPlayer(game, user) {
   game.players.push({
     name: user.name,
     id: user._id,
@@ -52,6 +52,15 @@ function computeNextPos(playerIndex, curPos, dice) {
 function checkIfMoveAvailable(game) {
   for (let i = 0; i <game.players[game.playerIndex].pieces.length; i++){
     let p = game.players[game.playerIndex].pieces[i];
+    let validMove = checkIfMoveValid(game, p);
+    if (validMove) return true;
+  }
+  game.playerIndex = (++game.playerIndex) % game.players.length;
+  game.waitingToMove = false;
+  return false;
+}
+
+function checkIfMoveValid(game, p) {
     let nextPosition = p.position + game.dice;
     if (!p.atHome && (newPosition !== getPieceAtPosition(game, nextPosition))) {
       var newPosition = nextPosition;
@@ -63,10 +72,7 @@ function checkIfMoveAvailable(game) {
       console.log('works2')
       return true;
     }
-  }
-  game.playerIndex = (++game.playerIndex) % game.players.length;
-  game.waitingToMove = false;
-  return false;
+    return false;
 }
 
 // Remove the piece of House and set on the 1st square on the track.

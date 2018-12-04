@@ -25,14 +25,7 @@ module.exports = {
       
       socket.on('createGame', function(user) {
         var game = new Game();
-        game.players.push({
-          name: user.name,
-          id: user._id,
-        });
-        var playerIdx = game.players.length - 1;
-        for (i = 0; i < 4; i++) {
-          game.players[playerIdx].pieces.push({ player: playerIdx });
-        };
+        board.createPlayer(game, user);
         game.save(function(err) {
           socket.gameId = game.id;
           socket.join(game.id);
@@ -43,14 +36,7 @@ module.exports = {
       
       socket.on('joinGame', function(user, roomId) {
         var game = games[roomId];
-        game.players.push({
-          name: user.name,
-          id: user._id,
-        });
-        var playerIdx = game.players.length - 1;
-        for (i = 0; i < 4; i++) {
-          game.players[playerIdx].pieces.push({ player: playerIdx });
-        };
+        board.createPlayer(game, user);
         socket.gameId = game.id;
         socket.join(roomId);
         if (game.players.length === 4) game.gameInPlay = true;
