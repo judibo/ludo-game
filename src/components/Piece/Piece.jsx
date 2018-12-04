@@ -3,7 +3,7 @@ import './Piece.css';
 import gameService from '../../utils/gameService';
 
 
-const Piece = ({game, piece, color, user}) => {
+const Piece = ({game, piece, color}) => {
   return (
     <div className="Piece">
       <div className="Piece-color" 
