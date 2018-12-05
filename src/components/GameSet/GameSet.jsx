@@ -13,7 +13,11 @@ const GameSet = ({game, user, colors}) => {
             <div className="GameSet-players">
                 <h4>Players online:</h4>
                 <ul> 
-                    {game.players.map((player) => <li style={{color: colors[game.playerIndex]}}>{player.name} </li>)}
+                    {game.players.map((player, index) =>
+                        <div style={{display: 'flex'}}> 
+                            <div className="GameSet-players-color" style={{backgroundColor: colors[index]}} />
+                            <li style={{color: colors[index], fontWeight: 'bold'}}>{player.name} </li> 
+                        </div>)}
                 </ul>
             </div>
             <hr/>
@@ -27,5 +31,3 @@ const GameSet = ({game, user, colors}) => {
 }
 
 export default GameSet;
-
-

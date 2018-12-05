@@ -74,14 +74,15 @@ function checkIfMoveValid(game, p) {
 
 function movePiece(game, piece) {
   var playerPiece = game.players[game.playerIndex].pieces.find(p => p._id.equals(piece._id));
-  if (playerPiece.atHome && game.dice === 6) {
+  if (playerPiece.atHome && game.dice === 6 && !getPieceAtPosition(game, lookup[game.playerIndex].firstPosition)) {
     playerPiece.position = lookup[game.playerIndex].firstPosition;
     playerPiece.atHome = false;
-  } else {
+    game.waitingToMove = false;
+  } else if (!playerPiece.atHome) {
     playerPiece.position += game.dice;
     game.playerIndex = (++game.playerIndex) % game.players.length;
-  }
-  game.waitingToMove = false;
+    game.waitingToMove = false;
+  } 
 }
 
 function resetPiece(game, piece) {

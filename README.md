@@ -12,14 +12,15 @@ Two, three, or four can play, without partnerships. At the beginning of the game
 ## Technologies Used:
 * React
 * Node.js
-* MongoDB
 * Socket.io
-* Javascript
-* CSS
-* HTML
-* Heroku
+* MongoDB
 * Mongoose
+* Javascript
+* HTML
+* CSS
 * JSON Web Tokens
+* Heroku
+* mLab
 
 
 ## Getting Started
