@@ -4,7 +4,7 @@ import './Dice.css';
 
 
 const Dice = ({game, user}) => {
-  let makeMove = game.dice === 6 ? <div>You got a 6! Bonus round</div> : null; 
+  let makeMove = game.dice === 6 ? <div>You got a 6! Bonus roll</div> : null; 
   let playerIdx = game.players.findIndex(player => player.id === user._id)
   let playerTurn = ( game.playerIndex === playerIdx)?
     <div>

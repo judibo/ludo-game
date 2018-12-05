@@ -5,8 +5,6 @@ module.exports = {
   checkIfMoveAvailable,
   getPieceAtPosition,
   movePiece,
-  setPieceOnTrack,
-  movePiecePosition,
   resetPiece,
   computeNextPos,
 }
@@ -74,18 +72,6 @@ function checkIfMoveValid(game, p) {
     return false;
 }
 
-// function movePiece(game, piece) {
-//   var playerPiece = game.players[game.playerIndex].pieces.find(p => p._id.equals(piece._id));
-//   if (playerPiece.atHome) {
-//     playerPiece.position = lookup[game.playerIndex].firstPosition;
-//     playerPiece.atHome = false;
-//   } else {
-//     playerPiece.position += game.dice;
-//     game.playerIndex = (++game.playerIndex) % game.players.length;
-//   }
-//   game.waitingToMove = false;
-// }
-
 function movePiece(game, piece) {
   var playerPiece = game.players[game.playerIndex].pieces.find(p => p._id.equals(piece._id));
   if (playerPiece.atHome && game.dice === 6) {
@@ -98,31 +84,8 @@ function movePiece(game, piece) {
   game.waitingToMove = false;
 }
 
-// Remove the piece of House and set on the 1st square on the track.
-function setPieceOnTrack(game, piece) {
+function resetPiece(game, piece) {
   var playerPiece = game.players[game.playerIndex].pieces.find(p => p._id.equals(piece._id));
-  playerPiece.position = lookup[game.playerIndex].firstPosition;
-  playerPiece.atHome = false;
-  game.waitingToMove = false;
-}
-
-function movePiecePosition(game, piece) {
-  var playerPiece = game.players[game.playerIndex].pieces.find(p => p._id.equals(piece._id));
-  playerPiece.position += game.dice;
-  // if (game.piece.atHome && !game.piece.isSafe){
-  //   playerPiece.position += game.dice;
-  // } else if(!game.piece.atHome && game.piece.isSafe) {
-  //     //the piece has to take the exact number on dice to enter the center (endGame) 
-  // } else {
-      // pass the turn to the next user
-  game.playerIndex = (++game.playerIndex) % game.players.length;
-  game.waitingToMove = false;
-  // }
-}
-
-
-function resetPiece(req, res) {
-    game.players[playerIdx].pieces[selPieceIdx].position = null;
-    // if game.pieces[selPieceIdx].position === game.piece.position
-    // return game.pieces[selPieceIdx].position = null && game.pieces[selPieceIdx].atHome = true
+  playerPiece.position = null;
+  playerPiece.atHome = true;
 }

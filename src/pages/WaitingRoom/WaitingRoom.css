@@ -9,7 +9,7 @@
     font-size: 20px;
     border: 1px solid black;
     box-shadow: 4px 4px 0px rgba(0, 0, 0, 1);
-    width: 50vw;
+    max-width: 320px;
     text-align: center;
     margin: auto;
   }

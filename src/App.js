@@ -15,7 +15,7 @@ import gameService from './utils/gameService';
 import WaitingRoom from './pages/WaitingRoom/WaitingRoom';
 import StartGame from './pages/StartGame/StartGame';
 
-let colors = ['#b34121', '#f0c830', '#7d8e14', '#0152a8'];  //set color for playerIndex
+let colors = ['#b34121', '#f0c830', '#0152a8', '#7d8e14'];  //set color for playerIndex
 
 class App extends Component {
   constructor(props) {

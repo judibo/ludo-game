@@ -5,8 +5,6 @@ export default {
     joinGame,
     startGame,
     rollDice,
-    setPieceOnTrack,
-    movePiecePosition,
     getPieceAtPosition,
     movePiece
     // computeNextPos
@@ -57,13 +55,6 @@ function rollDice() {
     socket.emit('rollDice');
 }
 
-function setPieceOnTrack(piece) {
-    socket.emit('setPieceOnTrack', piece);
-}
-
-function movePiecePosition(piece) {
-    socket.emit('movePiecePosition', piece);
-}
 function movePiece(piece) {
     socket.emit('movePiece', piece);
 }

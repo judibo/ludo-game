@@ -66,21 +66,7 @@ module.exports = {
         io.to(game.id).emit('gameData', game);
         game.save();
       });
-      socket.on('setPieceOnTrack', function(piece) {
-        var game = games[socket.gameId];
-        board.setPieceOnTrack(game, piece);
-        io.to(game.id).emit('gameData', game);
-        game.save();
-      });
-
-      // Move the selected piece inside the track
-      socket.on('movePiecePosition', function(piece) {
-        var game = games[socket.gameId];
-        board.movePiecePosition(game, piece);
-        io.to(game.id).emit('gameData', game);
-        game.save();
-      });
-
+     
     })
   },
   

@@ -1,1 +1,1 @@
-export default ['#b34121', '#f0c830', '#7d8e14', '#0152a8'];
+export default ['#b34121', '#f0c830', '#0152a8', '#7d8e14'];

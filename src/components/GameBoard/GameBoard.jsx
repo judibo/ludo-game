@@ -9,7 +9,7 @@ const GameBoard = ({game, colors, user}) => {
       <div className="GameBoard-Row1">
         <div className="GameBoard-ColorHouse GameBoard-Red">
           <div className="House-Pieces">
-            { game.players[0].pieces.map(p => p.atHome && <Piece color={colors[0]} piece={p} game={game} user={user}/>) }
+            { game.players[0].pieces.map(p => p.atHome && <Piece color={colors[0]} piece={p} game={game}/>) }
           </div>
         </div>
         <div className="GameBoard-Col">
@@ -34,7 +34,7 @@ const GameBoard = ({game, colors, user}) => {
         </div>
         <div className="GameBoard-ColorHouse GameBoard-Yellow">
           <div className="House-Pieces">
-            { game.players[1].pieces.map(p => p.atHome && <Piece color={colors[1]} piece={p} game={game} user={user}/>) }
+            { game.players[1].pieces.map(p => p.atHome && <Piece color={colors[1]} piece={p} game={game}/>) }
           </div>
         </div>
       </div>
@@ -89,32 +89,32 @@ const GameBoard = ({game, colors, user}) => {
       <div className="GameBoard-Row3">
           <div className="GameBoard-ColorHouse GameBoard-Green">
             <div className="House-Pieces">
-              { game.players.length > 2 && game.players[2].pieces.map(p => p.atHome && <Piece color={colors[2]} piece={p} game={game} user={user}/>) }
+              { game.players.length === 4 && game.players[3].pieces.map(p => p.atHome && <Piece color={colors[3]} piece={p} game={game} />) }
             </div>
           </div>
           <div className="GameBoard-Col">
-            <Cell position={43} game={game} colors={colors}/>
+            <Cell user={user} position={43} game={game} colors={colors}/>
             <div className="green"></div>
-            <Cell position={31} game={game} colors={colors}/>
-            <Cell position={42} game={game} colors={colors}/>
+            <Cell user={user} position={31} game={game} colors={colors}/>
+            <Cell user={user} position={42} game={game} colors={colors}/>
             <div className="green"></div>
-            <Cell position={32} game={game} colors={colors}/>
-            <Cell position={41} game={game} colors={colors}/>
+            <Cell user={user} position={32} game={game} colors={colors}/>
+            <Cell user={user} position={41} game={game} colors={colors}/>
             <div className="green"></div>
-            <Cell position={33} game={game} colors={colors}/>
-            <Cell position={40} game={game} colors={colors}/>
+            <Cell user={user} position={33} game={game} colors={colors}/>
+            <Cell user={user} position={40} game={game} colors={colors}/>
             <div className="green"></div>
-            <Cell position={34} game={game} colors={colors}/>
-            <Cell position={39} game={game} colors={colors}/>
+            <Cell user={user} position={34} game={game} colors={colors}/>
+            <Cell user={user} position={39} game={game} colors={colors}/>
             <div className="green"></div>
-            <Cell position={35} game={game} colors={colors}/>
-            <Cell position={38} game={game} colors={colors}/>
-            <Cell position={37} game={game} colors={colors}/>
-            <Cell position={36} game={game} colors={colors}/>
+            <Cell user={user} position={35} game={game} colors={colors}/>
+            <Cell user={user} position={38} game={game} colors={colors}/>
+            <Cell user={user} position={37} game={game} colors={colors}/>
+            <Cell user={user} position={36} game={game} colors={colors}/>
           </div>
           <div className="GameBoard-ColorHouse GameBoard-Blue">
             <div className="House-Pieces">
-              { game.players.length === 4 && game.players[3].pieces.map(p => p.atHome && <Piece color={colors[3]} piece={p} game={game} user={user}/>) }
+              { game.players.length > 2 && game.players[2].pieces.map(p => p.atHome && <Piece color={colors[2]} piece={p} game={game} />) }
             </div>
           </div>
       </div>
