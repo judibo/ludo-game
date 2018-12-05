@@ -1,44 +1,40 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Ludo Game
 
-## Available Scripts
+## Description
+[Ludo](https://en.wikipedia.org/wiki/Ludo_(board_game)) is a strategy board game for two to four players, in which the players race their four tokens from start to finish according to the rolls of a single die. 
 
-In the project directory, you can run:
+Two, three, or four can play, without partnerships. At the beginning of the game, each player's four tokens are out of play and staged in the player's yard (one of the large corner areas of the board in the player's colour). When able to, the players will enter their tokens one per time on their respective starting squares, and proceed to race them clockwise around the board along the game track (the path of squares not part of any player's home column). When reaching the square below his home column, a player continues by moving tokens up the column to the finishing square. The rolls of a single die control the swiftness of the tokens, and entry to the finishing square requires a precise roll from the player. The first to bring all their tokens to the finish wins the game.
+(Wikipedia)
 
-### `npm start`
+## Screenshot
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+## Technologies Used:
+* React
+* Node.js
+* MongoDB
+* Socket.io
+* Javascript
+* CSS
+* HTML
+* Heroku
+* Mongoose
+* JSON Web Tokens
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Getting Started
 
-### `npm run build`
+[Trello](https://trello.com/b/y8AgHunQ/ludo-game)
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+[Play - Ludo](https://ludogame.herokuapp.com/)
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+## Unsolved problems
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+* Block the move if the user has another pieces at the possible next position.
+* Set the logic to have the exact roll inside the Safe Lane.
+* Reset opponent's Piece if piece lands on the same position.
+* Check the winner
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Future Features
+* Keep rolls history.
+* Configure AI to have User X Machine.
