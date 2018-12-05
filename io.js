@@ -55,16 +55,17 @@ module.exports = {
         var game = games[socket.gameId];
         var randomNumber = Math.floor(Math.random() * 6) + 1;
         game.dice = randomNumber;
-        console.log(`Dice:${game.dice}`);
-        // game.players[game.playerIndex].rolls.push({
-        //   randomNumber
-        // });
-        // console.log(game.players[game.playerIndex].rolls)
         board.checkIfMoveAvailable(game);
         io.to(game.id).emit('gameData', game);
         game.save();
       });
       
+      socket.on('movePiece', function(piece) {
+        var game = games[socket.gameId];
+        board.movePiece(game, piece);
+        io.to(game.id).emit('gameData', game);
+        game.save();
+      });
       socket.on('setPieceOnTrack', function(piece) {
         var game = games[socket.gameId];
         board.setPieceOnTrack(game, piece);
@@ -73,11 +74,9 @@ module.exports = {
       });
 
       // Move the selected piece inside the track
-      socket.on('handleMovePosition', function() {
+      socket.on('movePiecePosition', function(piece) {
         var game = games[socket.gameId];
-        board.setPieceOnTrack(game, piece);
-        // game.players[game.playerIndex].pieces[selPieceIdx].position += game.dice;
-        // console.log(`Position: ${game.players[game.playerIndex].pieces[selPieceIdx].position}`);
+        board.movePiecePosition(game, piece);
         io.to(game.id).emit('gameData', game);
         game.save();
       });

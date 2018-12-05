@@ -10,7 +10,6 @@ const Cell = ({user, position, game}) => {
   console.log(piece)
   return (
     <div className="Cell">
-      {/* {game && <div className="Cell-color" style={{backgroundColor: 'grey'}}/> } */}
       {game && piece && <Piece color={colors[piece.player]} piece={piece} game={game} user={user}/>}
     </div>
     );

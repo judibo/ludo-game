@@ -4,8 +4,9 @@ module.exports = {
   createPlayer,
   checkIfMoveAvailable,
   getPieceAtPosition,
-  setPieceOnTrack,
   movePiece,
+  setPieceOnTrack,
+  movePiecePosition,
   resetPiece,
   computeNextPos,
 }
@@ -65,14 +66,36 @@ function checkIfMoveValid(game, p) {
     if (!p.atHome && (newPosition !== getPieceAtPosition(game, nextPosition))) {
       var newPosition = nextPosition;
       game.waitingToMove = true;
-      console.log('works')
       return true;
     } else if (p.atHome && game.dice === 6 && !getPieceAtPosition(game, lookup[game.playerIndex].firstPosition)) {
       game.waitingToMove = true;
-      console.log('works2')
       return true;
     }
     return false;
+}
+
+// function movePiece(game, piece) {
+//   var playerPiece = game.players[game.playerIndex].pieces.find(p => p._id.equals(piece._id));
+//   if (playerPiece.atHome) {
+//     playerPiece.position = lookup[game.playerIndex].firstPosition;
+//     playerPiece.atHome = false;
+//   } else {
+//     playerPiece.position += game.dice;
+//     game.playerIndex = (++game.playerIndex) % game.players.length;
+//   }
+//   game.waitingToMove = false;
+// }
+
+function movePiece(game, piece) {
+  var playerPiece = game.players[game.playerIndex].pieces.find(p => p._id.equals(piece._id));
+  if (playerPiece.atHome && game.dice === 6) {
+    playerPiece.position = lookup[game.playerIndex].firstPosition;
+    playerPiece.atHome = false;
+  } else {
+    playerPiece.position += game.dice;
+    game.playerIndex = (++game.playerIndex) % game.players.length;
+  }
+  game.waitingToMove = false;
 }
 
 // Remove the piece of House and set on the 1st square on the track.
@@ -83,16 +106,18 @@ function setPieceOnTrack(game, piece) {
   game.waitingToMove = false;
 }
 
-function movePiece(req, res) {
-  if (!game.piece.atHome && !game.piece.isSafe){
-    game.piece[selPieceIdx].position += game.dice;
-  } else if(!game.piece.atHome && game.piece.isSafe) {
-      //the piece has to take the exact number on dice to enter the center (endGame) 
-  } else {
+function movePiecePosition(game, piece) {
+  var playerPiece = game.players[game.playerIndex].pieces.find(p => p._id.equals(piece._id));
+  playerPiece.position += game.dice;
+  // if (game.piece.atHome && !game.piece.isSafe){
+  //   playerPiece.position += game.dice;
+  // } else if(!game.piece.atHome && game.piece.isSafe) {
+  //     //the piece has to take the exact number on dice to enter the center (endGame) 
+  // } else {
       // pass the turn to the next user
-      game.playerIndex = (++game.playerIndex) % game.players.length;
-      game.waitingToMove = false;
-  }
+  game.playerIndex = (++game.playerIndex) % game.players.length;
+  game.waitingToMove = false;
+  // }
 }
 
 
