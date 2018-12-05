@@ -7,7 +7,7 @@ Two, three, or four can play, without partnerships. At the beginning of the game
 (Wikipedia)
 
 ## Screenshot
-
+![ScreenShot](/public/imgs/ludo.jpg)
 
 ## Technologies Used:
 * React
