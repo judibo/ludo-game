@@ -18,7 +18,7 @@ const GameBoard = ({game, colors, user}) => {
           <Cell user={user} position={12} game={game} colors={colors}/>
           <Cell user={user} position={9} game={game} colors={colors}/>
           <div className="yellow"></div>
-          <Cell user={user} position={13} style={{backgroundColor: colors[0]}} game={game} />
+          <Cell user={user} position={13} style={{backgroundColor: 'red'}} game={game} />
           <Cell user={user} position={8} game={game} colors={colors}/>
           <div className="yellow"></div>
           <Cell user={user} position={14} game={game} colors={colors}/>

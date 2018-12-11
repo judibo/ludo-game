@@ -11,7 +11,6 @@ var pieceSchema = new mongoose.Schema({
 var playerSchema = new mongoose.Schema({
   name: String,
   id: String,
-  color: String,
   pieces: [pieceSchema],
   score: {type: Number, default: 0},
   rolls: [Number]
@@ -27,5 +26,4 @@ var gameSchema = new mongoose.Schema({
     timestamps: true
 });
 
-  
 module.exports = mongoose.model('Game', gameSchema);

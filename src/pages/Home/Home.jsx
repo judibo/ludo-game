@@ -21,7 +21,11 @@ class Home extends Component {
           <button onClick={this.handleJoinGame}>JOIN GAME</button>
         </div>
       :
-      <div className="Home-Ctrl"><a href="/login">Login to play</a></div>
+      <div className="Home-Ctrl">
+        <button>
+          <a href="/login" style={{color: 'black', textDecoration: 'none'}}>Login to play</a>
+        </button>
+      </div>
 
     return (
       <div className="Home">

@@ -14,3 +14,17 @@ button {
   box-shadow: 4px 4px 0px rgba(0, 0, 0, 1);
   outline: none;
 }
+
+/* input {
+  padding: 30px;
+  font-size: 15px;
+  outline: none;
+  margin: 40px 0 10px;
+} */
+input {
+  padding: 20px;
+  font-size: 15px;
+  outline: none;
+  margin: 10px 0 10px;
+}
+

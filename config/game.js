@@ -70,16 +70,18 @@ function checkIfMoveValid(game, p) {
       return true;
     }
     return false;
-}
-
-function movePiece(game, piece) {
+  }
+  
+  function movePiece(game, piece) {
+  let nextPosition = piece.position + game.dice;
   var playerPiece = game.players[game.playerIndex].pieces.find(p => p._id.equals(piece._id));
   if (playerPiece.atHome && game.dice === 6 && !getPieceAtPosition(game, lookup[game.playerIndex].firstPosition)) {
     playerPiece.position = lookup[game.playerIndex].firstPosition;
     playerPiece.atHome = false;
     game.waitingToMove = false;
-  } else if (!playerPiece.atHome) {
-    playerPiece.position += game.dice;
+  } else if (!playerPiece.atHome && (newPosition !== getPieceAtPosition(game, nextPosition))) {
+    var newPosition = nextPosition;
+    playerPiece.position = newPosition;
     game.playerIndex = (++game.playerIndex) % game.players.length;
     game.waitingToMove = false;
   } 

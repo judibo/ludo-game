@@ -34,7 +34,7 @@ Two, three, or four can play, without partnerships. At the beginning of the game
 * Block the move if the user has another pieces at the possible next position.
 * Set the logic to have the exact roll inside the Safe Lane.
 * Reset opponent's Piece if piece lands on the same position.
-* Check the winner
+* Check for winner.
 
 ## Future Features
 * Keep rolls history.
