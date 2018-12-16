@@ -82,18 +82,19 @@ function checkIfMoveValid(game, p) {
     playerPiece.atHome = false;
     game.waitingToMove = false;
   } else if (!playerPiece.atHome && !getPieceAtPosition(game, nextPosition)) {
-    var newPosition = nextPosition;
-    playerPiece.position = newPosition;
+    playerPiece.position = nextPosition;
     game.playerIndex = (++game.playerIndex) % game.players.length;
     game.waitingToMove = false;
   } else if (!playerPiece.atHome && (getPieceAtPosition(game, nextPosition))) {
+    var pieceToHome = getPieceAtPosition(game, nextPosition);
+      if (pieceToHome.player !== game.playerIndex) {
+        pieceToHome.position = null;
+        pieceToHome.atHome = true;
+        playerPiece.position = nextPosition;
+        game.playerIndex = (++game.playerIndex) % game.players.length;
+        game.waitingToMove = false;
+      }
     console.log('working here')
-    var newPosition = nextPosition;
-    piece.position = null;
-    piece.atHome = true;
-    console.log(piece)
-    // playerPiece.position = null;
-    // playerPiece.atHome = true;  
   }
 }
 
