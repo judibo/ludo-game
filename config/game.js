@@ -5,7 +5,6 @@ module.exports = {
   checkIfMoveAvailable,
   getPieceAtPosition,
   movePiece,
-  // resetPiece,
   computeNextPos,
 }
 
@@ -52,12 +51,10 @@ function checkIfMoveAvailable(game) {
   for (let i = 0; i < game.players[game.playerIndex].pieces.length; i++){
     let p = game.players[game.playerIndex].pieces[i];
     let validMove = checkIfMoveValid(game, p);
-    console.log(validMove)
     if (validMove) return true;
   }
   game.playerIndex = (++game.playerIndex) % game.players.length;
   game.waitingToMove = false;
-  console.log('not valid move')
   return false;
 }
 
@@ -94,12 +91,5 @@ function checkIfMoveValid(game, p) {
         game.playerIndex = (++game.playerIndex) % game.players.length;
         game.waitingToMove = false;
       }
-    console.log('working here')
   }
 }
-
-// function resetPiece(game, piece) {
-//   var playerPiece = game.players[game.playerIndex].pieces.find(p => p._id.equals(piece._id));
-//   playerPiece.position = null;
-//   playerPiece.atHome = true;
-// }
